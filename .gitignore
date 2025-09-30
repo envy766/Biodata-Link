@@ -1,3 +1,22 @@
-.zig-cache/
-zig-out/
-*.o
+# Sistem / IDE
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Log file
+*.log
+
+# File rahasia (kalau nanti ditambah backend)
+.env
+config.json
+
+# Node.js / build tools (jika nanti pakai npm / bundler)
+node_modules/
+dist/
+build/
+
+# Backup atau temporary files
+*.bak
+*.tmp
