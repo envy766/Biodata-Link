@@ -1,18 +1,22 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# Sistem / IDE
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
 
-# Other files and folders
-.settings/
+# Log file
+*.log
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# File rahasia (kalau nanti ditambah backend)
+.env
+config.json
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Node.js / build tools (jika nanti pakai npm / bundler)
+node_modules/
+dist/
+build/
+
+# Backup atau temporary files
+*.bak
+*.tmp
