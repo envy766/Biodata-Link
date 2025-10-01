@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linktree Futuristik</title>
+  <style>
+    /* ===== Background Animasi ===== */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(270deg, #ff0057, #00f7ff, #2c5364);
+      background-size: 600% 600%;
+      animation: gradientMove 10s ease infinite;
+      color: white;
+      text-align: center;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== Foto Profil Glow ===== */
+    .profile-pic {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00f7ff;
+      box-shadow: 0px 0px 25px #00f7ff;
+      margin-bottom: 15px;
+      animation: glow 2s infinite alternate;
+      transition: transform 0.3s ease;
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 15px #00f7ff; }
+      to { box-shadow: 0 0 35px #00f7ff; }
+    }
+.profile-pic:hover {
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  25% { transform: translate(-1px, 2px) rotate(-1deg); }
+  50% { transform: translate(-3px, 1px) rotate(1deg); }
+  75% { transform: translate(3px, 1px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+    /* ===== Neon Text ===== */
+    h1 {
+      margin: 10px 0;
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: #00f7ff;
+      text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+    }
+    p {
+      font-size: 14px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    /* ===== Tombol Neon ===== */
+    .link-btn {
+      display: block;
+      width: 85%;
+      max-width: 320px;
+      margin: 15px auto;
+      padding: 14px;
+      background: transparent;
+      border: 2px solid #00f7ff;
+      color: #00f7ff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: 0.3s;
+      box-shadow: 0px 0px 12px #00f7ff;
+    }
+    .link-btn:hover {
+      background: #00f7ff;
+      color: black;
+      box-shadow: 0px 0px 25px #00f7ff, 0px 0px 50px #00f7ff;
+      transform: scale(1.1) rotate(1deg);
+    }
+
+    /* ===== Tombol Musik Futuristik ===== */
+    .music-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: transparent;
+      border: 2px solid #ff0057;
+      color: #ff0057;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 15px #ff0057, 0 0 30px #ff0057;
+    }
+    .music-btn:hover {
+      background: #ff0057;
+      color: #000;
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #ff0057, 0 0 50px #ff0057;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 12px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <!-- Foto Profil -->
+  <img src="imagepp/profile.jpg" alt="Profile" class="profile-pic">
+
+  <!-- Nama & Deskripsi -->
+  <h1>🇵🇸 𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑 🇮🇩</h1>
+  <p>🌌 Jelajahi semua link aku di sini ya !</p>
+
+  <!-- Daftar Link -->
+  <a href="https://tiktok.com/@zifarla_" class="link-btn">🎵 TikTok</a>
+  <a href="https://instagram.com/zyderr__" class="link-btn">📸 Instagram</a>
+  <a href="https://youtube.com/@Nomadeen" class="link-btn">▶️ YouTube</a>
+  <a href="https://t.me/FreeZiellone" class="link-btn">💬 Telegram</a>
+  <a href="https://wa.me/qr/XN7L5X6YQK4ZE1" class="link-btn">🌐 WhatsApp</a>
+
+  <!-- Tombol Musik -->
+  <button class="music-btn" onclick="toggleMusic()">▶️ Play Music</button>
+  <audio id="bgMusic" loop>
+    <source src="musicbg/lagu1.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung pemutar musik.
+  </audio>
+
+  <!-- Footer -->
+  <footer>This Room Was Created By ` 𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑 ` In September 2025®</footer>
+
+  <script>
+    let isPlaying = false;
+    const music = document.getElementById("bgMusic");
+    const btn = document.querySelector(".music-btn");
+
+    function toggleMusic() {
+      if (isPlaying) {
+        music.pause();
+        btn.textContent = "▶️ Play Music";
+      } else {
+        music.play();
+        btn.textContent = "⏸ Pause Music";
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
+
+</body>
+</html>
