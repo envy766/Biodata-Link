@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -6,138 +7,137 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Linktree Futuristik</title>
 <style>
-/* ===== Background Animasi ===== */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(270deg, #ff0057, #00f7ff, #2c5364);
-  background-size: 600% 600%;
-  animation: gradientMove 10s ease infinite;
-  color: white;
-  text-align: center;
-  padding: 40px;
-  min-height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+  /* ===== Background Animasi ===== */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(270deg, #ff0057, #00f7ff, #2c5364);
+    background-size: 600% 600%;
+    animation: gradientMove 10s ease infinite;
+    color: white;
+    text-align: center;
+    padding: 40px;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-/* ===== Canvas Partikel ===== */
-#particleCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
+  /* ===== Foto Profil Glow ===== */
+  .profile-pic {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #00f7ff;
+    box-shadow: 0px 0px 25px #00f7ff;
+    margin-bottom: 15px;
+    animation: glow 2s infinite alternate;
+    transition: transform 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+  @keyframes glow {
+    from { box-shadow: 0 0 15px #00f7ff; }
+    to { box-shadow: 0 0 35px #00f7ff; }
+  }
+  .profile-pic:hover {
+    animation: shake 0.5s;
+  }
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    25% { transform: translate(-1px, 2px) rotate(-1deg); }
+    50% { transform: translate(-3px, 1px) rotate(1deg); }
+    75% { transform: translate(3px, 1px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
 
-/* ===== Foto Profil Glow ===== */
-.profile-pic {
-  width: 130px;
-  height: 130px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #00f7ff;
-  box-shadow: 0px 0px 25px #00f7ff;
-  margin-bottom: 15px;
-  animation: glow 2s infinite alternate;
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 1;
-}
-@keyframes glow {
-  from { box-shadow: 0 0 15px #00f7ff; }
-  to { box-shadow: 0 0 35px #00f7ff; }
-}
-.profile-pic:hover {
-  animation: shake 0.5s;
-}
-@keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  25% { transform: translate(-1px, 2px) rotate(-1deg); }
-  50% { transform: translate(-3px, 1px) rotate(1deg); }
-  75% { transform: translate(3px, 1px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
+  /* ===== Neon Text ===== */
+  h1 {
+    margin: 10px 0;
+    font-size: 26px;
+    letter-spacing: 2px;
+    color: #00f7ff;
+    text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff;
+    position: relative;
+    z-index: 2;
+  }
+  p {
+    font-size: 14px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+  }
 
-/* ===== Neon Text ===== */
-h1 {
-  margin: 10px 0;
-  font-size: 26px;
-  letter-spacing: 2px;
-  color: #00f7ff;
-  text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff;
-  position: relative;
-  z-index: 1;
-}
-p {
-  font-size: 14px;
-  margin-bottom: 30px;
-  opacity: 0.9;
-  position: relative;
-  z-index: 1;
-}
+  /* ===== Tombol Neon ===== */
+  .link-btn {
+    display: block;
+    width: 85%;
+    max-width: 320px;
+    margin: 15px auto;
+    padding: 14px;
+    background: transparent;
+    border: 2px solid #00f7ff;
+    color: #00f7ff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 12px;
+    transition: 0.3s;
+    box-shadow: 0px 0px 12px #00f7ff;
+    position: relative;
+    z-index: 2;
+  }
+  .link-btn:hover {
+    background: #00f7ff;
+    color: black;
+    box-shadow: 0px 0 25px #00f7ff, 0 0 50px #00f7ff;
+    transform: scale(1.1) rotate(1deg);
+  }
 
-/* ===== Tombol Neon ===== */
-.link-btn {
-  display: block;
-  width: 85%;
-  max-width: 320px;
-  margin: 15px auto;
-  padding: 14px;
-  background: transparent;
-  border: 2px solid #00f7ff;
-  color: #00f7ff;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 12px;
-  transition: 0.3s;
-  box-shadow: 0px 0px 12px #00f7ff;
-  position: relative;
-  z-index: 1;
-}
-.link-btn:hover {
-  background: #00f7ff;
-  color: black;
-  box-shadow: 0px 0 25px #00f7ff, 0 0 50px #00f7ff;
-  transform: scale(1.1) rotate(1deg);
-}
+  /* ===== Tombol Musik Futuristik ===== */
+  .music-btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: transparent;
+    border: 2px solid #ff0057;
+    color: #ff0057;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 15px #ff0057, 0 0 30px #ff0057;
+    position: relative;
+    z-index: 2;
+  }
+  .music-btn:hover {
+    background: #ff0057;
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #ff0057, 0 0 50px #ff0057;
+  }
 
-/* ===== Tombol Musik Futuristik ===== */
-.music-btn {
-  margin-top: 20px;
-  padding: 12px 25px;
-  background: transparent;
-  border: 2px solid #ff0057;
-  color: #ff0057;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 0 15px #ff0057, 0 0 30px #ff0057;
-  position: relative;
-  z-index: 1;
-}
-.music-btn:hover {
-  background: #ff0057;
-  color: #000;
-  transform: scale(1.1);
-  box-shadow: 0 0 25px #ff0057, 0 0 50px #ff0057;
-}
+  footer {
+    margin-top: 40px;
+    font-size: 12px;
+    opacity: 0.7;
+    position: relative;
+    z-index: 2;
+  }
 
-footer {
-  margin-top: 40px;
-  font-size: 12px;
-  opacity: 0.7;
-  position: relative;
-  z-index: 1;
-}
+  /* ===== Canvas untuk partikel ===== */
+  #particleCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
 </style>
 </head>
 <body>
@@ -155,9 +155,10 @@ footer {
 <!-- Daftar Link -->
 <a href="https://tiktok.com/@zifarla_" class="link-btn">🎵 TikTok</a>
 <a href="https://instagram.com/zyderr__" class="link-btn">📸 Instagram</a>
+<a href="https://www.facebook.com/share/1RvruY8odr/" class="link-btn">🌐 Facebook</a>
 <a href="https://youtube.com/@Nomadeen" class="link-btn">▶️ YouTube</a>
 <a href="https://t.me/FreeZiellone" class="link-btn">💬 Telegram</a>
-<a href="https://wa.me/qr/XN7L5X6YQK4ZE1" class="link-btn">🌐 WhatsApp</a>
+<a href="https://wa.me/qr/XN7L5X6YQK4ZE1" class="link-btn">📞 WhatsApp</a>
 
 <!-- Tombol Musik -->
 <button class="music-btn" onclick="toggleMusic()">▶️ Play Music</button>
@@ -170,66 +171,72 @@ footer {
 <footer>This Room Was Created By ` 𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑 ` In September 2025®</footer>
 
 <script>
+// ===== Partikel =====
+const canvas = document.getElementById("particleCanvas");
+const ctx = canvas.getContext("2d");
+let particles = [];
+let animationId;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+window.addEventListener("resize", resizeCanvas);
+resizeCanvas();
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = canvas.height + Math.random() * 100;
+    this.size = Math.random() * 3 + 1;
+    this.speedY = Math.random() * 2 + 1;
+    this.speedX = (Math.random()-0.5)*0.5;
+    this.color = Math.random()<0.5?"#00f7ff":"#ff0057";
+    this.alpha = Math.random()*0.5+0.3;
+  }
+  update() {
+    this.y -= this.speedY;
+    this.x += this.speedX;
+    this.alpha -= 0.002;
+    if(this.y<0 || this.alpha<=0) this.reset();
+  }
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.globalAlpha = this.alpha;
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+}
+
+for(let i=0;i<100;i++) particles.push(new Particle());
+
+function animate() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{p.update();p.draw();});
+  animationId = requestAnimationFrame(animate);
+}
+
 // ===== Musik =====
 let isPlaying = false;
 const music = document.getElementById("bgMusic");
 const btn = document.querySelector(".music-btn");
 
-// ===== Canvas Partikel =====
-const canvas = document.getElementById("particleCanvas");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let particles = [];
-let particleAnim;
-
-function createParticle() {
-  const x = Math.random() * canvas.width;
-  const y = canvas.height + 10;
-  const size = Math.random() * 3 + 2;
-  const speed = Math.random() * 1.5 + 0.5;
-  particles.push({x, y, size, speed});
-}
-
-function animateParticles() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  for (let i = 0; i < particles.length; i++) {
-    const p = particles[i];
-    p.y -= p.speed;
-    p.size *= 0.98;
-    ctx.fillStyle = `rgba(0, 255, 255, 0.8)`;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-    ctx.fill();
-    if(p.size < 0.5 || p.y < 0){
-      particles.splice(i,1);
-      i--;
-    }
-  }
-  particleAnim = requestAnimationFrame(animateParticles);
-}
-
-// ===== Toggle Musik & Partikel =====
-function toggleMusic() {
-  if (isPlaying) {
+function toggleMusic(){
+  if(isPlaying){
     music.pause();
-    btn.textContent = "▶️ Play Music";
-    cancelAnimationFrame(particleAnim); // stop particle
-    ctx.clearRect(0,0,canvas.width,canvas.height); // clear canvas
-  } else {
+    btn.textContent="▶️ Play Music";
+    cancelAnimationFrame(animationId);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  }else{
     music.play();
-    btn.textContent = "⏸ Pause Music";
-    for(let i=0;i<5;i++) createParticle(); // init particles
-    animateParticles();
+    btn.textContent="⏸ Pause Music";
+    animate();
   }
   isPlaying = !isPlaying;
 }
-
-// ===== Resize Canvas =====
-window.addEventListener("resize", () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
 </script>
 
 </body>
