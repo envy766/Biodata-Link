@@ -174,69 +174,295 @@
 // ===== Partikel =====
 const canvas = document.getElementById("particleCanvas");
 const ctx = canvas.getContext("2d");
+
 let particles = [];
 let animationId;
 
+// ===== Audio Analyzer =====
+const music = document.getElementById("bgMusic");
+
+let audioContext;
+let analyser;
+let source;
+let dataArray;
+let audioReady = false;
+
+function setupAudio() {
+  if (audioReady) return;
+
+  audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+  analyser = audioContext.createAnalyser();
+
+  // Semakin tinggi = lebih sensitif terhadap detail musik
+  analyser.fftSize = 256;
+
+  source = audioContext.createMediaElementSource(music);
+
+  source.connect(analyser);
+  analyser.connect(audioContext.destination);
+
+  dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+  audioReady = true;
+}
+
+// ===== Canvas =====
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 }
+
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
+
+// ===== Particle Class =====
 class Particle {
-  constructor() { this.reset(); }
+
+  constructor() {
+    this.reset();
+  }
+
   reset() {
+
     this.x = Math.random() * canvas.width;
+
     this.y = canvas.height + Math.random() * 100;
-    this.size = Math.random() * 3 + 1;
-    this.speedY = Math.random() * 2 + 1;
-    this.speedX = (Math.random()-0.5)*0.5;
-    this.color = Math.random()<0.5?"#00f7ff":"#ff0057";
-    this.alpha = Math.random()*0.5+0.3;
+
+    this.baseSize = Math.random() * 3 + 1;
+
+    this.size = this.baseSize;
+
+    this.baseSpeed = Math.random() * 2 + 1;
+
+    this.speedY = this.baseSpeed;
+
+    this.speedX = (Math.random() - 0.5) * 0.5;
+
+    this.color =
+      Math.random() < 0.5
+      ? "#00f7ff"
+      : "#ff0057";
+
+    this.baseAlpha = Math.random() * 0.5 + 0.3;
+
+    this.alpha = this.baseAlpha;
   }
-  update() {
+
+
+  update(beat) {
+
+    // ===== Gerakan normal =====
+
     this.y -= this.speedY;
+
     this.x += this.speedX;
-    this.alpha -= 0.002;
-    if(this.y<0 || this.alpha<=0) this.reset();
+
+
+    // ===== Efek mengikuti musik =====
+
+    this.speedY =
+      this.baseSpeed +
+      beat * 3;
+
+    this.size =
+      this.baseSize +
+      beat * 5;
+
+    this.alpha =
+      Math.min(
+        1,
+        this.baseAlpha + beat * 0.7
+      );
+
+
+    // ===== Reset =====
+
+    if (
+      this.y < 0 ||
+      this.alpha <= 0
+    ) {
+
+      this.reset();
+
+    }
+
   }
-  draw() {
-    ctx.fillStyle = this.color;
+
+
+  draw(beat) {
+
+    ctx.save();
+
     ctx.globalAlpha = this.alpha;
+
+    ctx.fillStyle = this.color;
+
+    // ===== Glow mengikuti musik =====
+
+    ctx.shadowBlur =
+      5 + beat * 35;
+
+    ctx.shadowColor =
+      this.color;
+
+
     ctx.beginPath();
-    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+
+    ctx.arc(
+      this.x,
+      this.y,
+      this.size,
+      0,
+      Math.PI * 2
+    );
+
     ctx.fill();
-    ctx.globalAlpha = 1;
+
+    ctx.restore();
+
   }
+
 }
 
-for(let i=0;i<100;i++) particles.push(new Particle());
+
+// ===== Membuat 100 Partikel =====
+
+for(let i = 0; i < 100; i++) {
+
+  particles.push(
+    new Particle()
+  );
+
+}
+
+
+// ===== Animasi =====
 
 function animate() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{p.update();p.draw();});
-  animationId = requestAnimationFrame(animate);
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+
+  let beat = 0;
+
+
+  // ===== Membaca musik =====
+
+  if(analyser) {
+
+    analyser.getByteFrequencyData(
+      dataArray
+    );
+
+
+    let total = 0;
+
+    for(
+      let i = 0;
+      i < dataArray.length;
+      i++
+    ) {
+
+      total += dataArray[i];
+
+    }
+
+
+    beat =
+      total /
+      dataArray.length /
+      255;
+
+  }
+
+
+  // ===== Update Partikel =====
+
+  particles.forEach(p => {
+
+    p.update(beat);
+
+    p.draw(beat);
+
+  });
+
+
+  animationId =
+    requestAnimationFrame(
+      animate
+    );
+
 }
+
 
 // ===== Musik =====
-let isPlaying = false;
-const music = document.getElementById("bgMusic");
-const btn = document.querySelector(".music-btn");
 
-function toggleMusic(){
-  if(isPlaying){
+let isPlaying = false;
+
+const btn =
+  document.querySelector(".music-btn");
+
+
+function toggleMusic() {
+
+  if(isPlaying) {
+
     music.pause();
-    btn.textContent="Play Music";
-    cancelAnimationFrame(animationId);
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-  }else{
+
+    btn.textContent =
+      "Play Music";
+
+    cancelAnimationFrame(
+      animationId
+    );
+
+    ctx.clearRect(
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+
+  } else {
+
+    setupAudio();
+
+
+    // Membuka AudioContext
+    if(
+      audioContext.state ===
+      "suspended"
+    ) {
+
+      audioContext.resume();
+
+    }
+
+
     music.play();
-    btn.textContent="Pause Music";
+
+    btn.textContent =
+      "Pause Music";
+
+
     animate();
+
   }
-  isPlaying = !isPlaying;
+
+
+  isPlaying =
+    !isPlaying;
+
 }
+
 </script>
 
 </body>
