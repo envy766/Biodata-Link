@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Linktree Night Gold</title>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  background:
+    radial-gradient(circle at 50% 20%, #17130a 0%, #080807 38%, #000000 75%);
+
+  color: #f6d77a;
+  text-align: center;
+
+  padding: 40px 20px;
+
+  min-height: 100vh;
+  margin: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  position: relative;
+}
+
+
+/* =========================================================
+   CANVAS BACKGROUND
+========================================================= */
+
+#particleCanvas {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   CONTENT LAYER
+========================================================= */
+
+body > *:not(#particleCanvas) {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-pic {
+
+  width: 130px;
+  height: 130px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 4px solid #f4c95d;
+
+  box-shadow:
+    0 0 8px #f4c95d,
+    0 0 20px rgba(244, 201, 93, 0.65),
+    0 0 40px rgba(244, 201, 93, 0.25);
+
+  margin-bottom: 15px;
+
+  animation: goldGlow 3s ease-in-out infinite alternate;
+
+  transition: transform 0.3s ease;
+}
+
+@keyframes goldGlow {
+
+  from {
+
+    box-shadow:
+      0 0 8px #f4c95d,
+      0 0 18px rgba(244, 201, 93, 0.55),
+      0 0 30px rgba(244, 201, 93, 0.20);
+
+  }
+
+  to {
+
+    box-shadow:
+      0 0 12px #ffe08a,
+      0 0 28px rgba(244, 201, 93, 0.75),
+      0 0 50px rgba(244, 201, 93, 0.30);
+
+  }
+
+}
+
+.profile-pic:hover {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+
+  50% {
+    transform: translate(-3px, 1px) rotate(1deg);
+  }
+
+  75% {
+    transform: translate(3px, 1px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+
+}
+/* =========================================================
+   NAME
+========================================================= */
+
+h1 {
+
+  margin: 10px 0;
+
+  font-size: 26px;
+
+  letter-spacing: 2px;
+
+  color: #f6d77a;
+
+  text-shadow:
+    0 0 4px rgba(255, 220, 120, 0.8),
+    0 0 10px rgba(244, 201, 93, 0.55),
+    0 0 22px rgba(244, 201, 93, 0.25);
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+p {
+
+  font-size: 12px;
+
+  margin-bottom: 30px;
+
+  color: #e9dcae;
+
+  opacity: 0.9;
+
+  text-shadow:
+    0 0 5px rgba(244, 201, 93, 0.20);
+}
+
+
+/* =========================================================
+   LINK BUTTONS
+========================================================= */
+
+.link-btn {
+
+  display: block;
+
+  width: 85%;
+  max-width: 320px;
+
+  margin: 15px auto;
+
+  padding: 14px;
+
+  background:
+    rgba(10, 9, 6, 0.60);
+
+  border: 2px solid #d9ae45;
+
+  color: #f6d77a;
+
+  text-decoration: none;
+
+  font-weight: bold;
+
+  border-radius: 12px;
+
+  transition:
+    0.3s ease;
+
+  box-shadow:
+    0 0 7px rgba(244, 201, 93, 0.40),
+    inset 0 0 8px rgba(244, 201, 93, 0.05);
+}
+
+.link-btn:hover {
+
+  background:
+    rgba(244, 201, 93, 0.90);
+
+  color: #080704;
+
+  box-shadow:
+    0 0 15px rgba(244, 201, 93, 0.80),
+    0 0 35px rgba(244, 201, 93, 0.35);
+
+  transform:
+    scale(1.05);
+
+}
+/* =========================================================
+   MUSIC BUTTON
+========================================================= */
+
+.music-btn {
+
+  margin-top: 20px;
+
+  padding: 12px 25px;
+
+  background:
+    rgba(10, 9, 6, 0.70);
+
+  border: 2px solid #f4c95d;
+
+  color: #f6d77a;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  border-radius: 30px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    0 0 10px rgba(244, 201, 93, 0.55),
+    0 0 25px rgba(244, 201, 93, 0.18);
+}
+
+.music-btn:hover {
+  background: #f4c95d;
+
+  color: #080704;
+
+  transform: scale(1.07);
+
+  box-shadow:
+    0 0 20px rgba(244, 201, 93, 0.90),
+    0 0 45px rgba(244, 201, 93, 0.40);
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+  margin-top: 45px;
+  padding-bottom: 20px;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #d6b85a;
+  text-shadow:
+    0 0 5px #d6b85a,
+    0 0 10px rgba(214, 184, 90, 0.5);
+  opacity: 0.85;
+  position: relative;
+  z-index: 2;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  body {
+    padding: 30px 15px;
+  }
+
+  .profile-pic {
+
+    width: 120px;
+    height: 120px;
+
+  }
+
+  h1 {
+
+    font-size: 23px;
+
+  }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .profile-pic {
+    animation: none;
+  }
+
+  .link-btn,
+  .music-btn {
+    transition: none;
+  }
+
+}
+
+</style>
+</head>
+
+<!-- =======================================================
+     BACKGROUND CANVAS
+======================================================= -->
+
+<canvas id="particleCanvas"></canvas>
+
+
+<!-- =======================================================
+     PROFILE
+======================================================= -->
+
+<img
+  src="../imagepp/profile.jpg"
+  alt="Profile"
+  class="profile-pic"
+>
+
+
+<!-- =======================================================
+     NAME
+======================================================= -->
+
+<h1> ✨ 𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑 ✨ </h1>
+
+<p>
+''Apapun Yang Terjadi Aku Akan Tetap Memilihmu''
+</p>
+
+
+<!-- =======================================================
+     LINKS
+======================================================= -->
+
+<a
+  href="https://tiktok.com/@zifarla_"
+  class="link-btn"
+>
+  TikTok
+</a>
+
+
+<a
+  href="https://instagram.com/zyderr__"
+  class="link-btn"
+>
+  Instagram
+</a>
+
+
+<a
+  href="https://www.facebook.com/share/1RvruY8odr/"
+  class="link-btn"
+>
+  Facebook
+</a>
+
+
+<a
+  href="https://youtube.com/@Nomadeen"
+  class="link-btn"
+>
+  YouTube
+</a>
+
+
+<a
+  href="https://t.me/FreeZiellone"
+  class="link-btn"
+>
+  Telegram
+</a>
+
+
+<a
+  href="https://wa.me/qr/XN7L5X6YQK4ZE1"
+  class="link-btn"
+>
+  WhatsApp
+</a>
+
+
+<!-- =======================================================
+     MUSIC
+======================================================= -->
+
+<button
+  class="music-btn"
+  onclick="toggleMusic()"
+>
+  Play Music
+</button>
+
+
+<audio id="bgMusic" loop>
+
+  <source
+    src="../musicbg/lagu2.mp3"
+    type="audio/mpeg"
+  >
+
+  Browser kamu tidak mendukung pemutar musik.
+
+</audio>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+  Latest Version Update 23.08.2026<br>
+  This Room Was Created By ` 𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑 ` In September 2025®<br>
+  Copyright © 2026 𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑<br>All Rights Reserved
+</footer>
+
+<script>
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+const canvas = document.getElementById("particleCanvas");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+let lanterns = [];
+
+let animationId;
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const music = document.getElementById("bgMusic");
+const btn = document.querySelector(".music-btn");
+
+let isPlaying = false;
+
+let audioContext = null;
+let analyser = null;
+let source = null;
+let audioReady = false;
+
+let lanternSpawnTimer = null;
+
+
+/* =========================================================
+   RESIZE CANVAS
+========================================================= */
+
+function resizeCanvas() {
+
+  const dpr =
+    Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width =
+    window.innerWidth * dpr;
+
+  canvas.height =
+    window.innerHeight * dpr;
+
+  canvas.style.width =
+    window.innerWidth + "px";
+
+  canvas.style.height =
+    window.innerHeight + "px";
+
+  ctx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+
+}
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+resizeCanvas();
+
+
+/* =========================================================
+   ⭐ BINTANG
+========================================================= */
+
+class Star {
+
+  constructor() {
+
+    this.x =
+      Math.random() *
+      window.innerWidth;
+
+    this.y =
+      Math.random() *
+      window.innerHeight;
+
+
+    /*
+     * Bintang dibuat sedikit lebih besar.
+     */
+
+    this.size =
+      Math.random() * 1.8 + 0.7;
+
+
+    /*
+     * Tingkat kecerahan dasar.
+     */
+
+    this.baseAlpha =
+      Math.random() * 0.45 + 0.35;
+
+    this.alpha =
+      this.baseAlpha;
+
+
+    /*
+     * Waktu kerlip acak.
+     */
+
+    this.phase =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    this.twinkleSpeed =
+      Math.random() * 0.025 +
+      0.006;
+
+
+    /*
+     * Sebagian bintang menjadi
+     * bintang yang sangat terang.
+     */
+
+    this.bright =
+      Math.random() < 0.22;
+
+
+    /*
+     * Sebagian kecil berwarna
+     * sedikit keemasan.
+     */
+
+    this.warm =
+      Math.random() < 0.18;
+
+
+    /*
+     * Ukuran sinar cahaya.
+     */
+
+    this.rayLength =
+      Math.random() * 6 + 5;
+
+  }
+
+
+  update() {
+
+    /*
+     * Bintang TIDAK berpindah.
+     *
+     * Hanya cahayanya yang berubah.
+     */
+
+    this.phase +=
+      this.twinkleSpeed;
+
+
+    const wave =
+      (Math.sin(this.phase) + 1) / 2;
+
+
+    /*
+     * Bintang biasa.
+     */
+
+    if (!this.bright) {
+
+      this.alpha =
+        this.baseAlpha +
+        wave * 0.35;
+
+    }
+
+
+    /*
+     * Bintang terang.
+     *
+     * Bisa menjadi sangat terang
+     * sebentar seperti cahaya bintang
+     * yang menyilaukan.
+     */
+
+    else {
+
+      this.alpha =
+        this.baseAlpha +
+        wave * 0.60;
+
+    }
+
+  }
+
+
+  draw() {
+
+    ctx.save();
+
+
+    ctx.globalAlpha =
+      Math.min(
+        this.alpha,
+        1
+      );
+
+
+    const starColor =
+      this.warm
+      ? "#ffe8a3"
+      : "#ffffff";
+
+
+    const glowColor =
+      this.warm
+      ? "#ffd45c"
+      : "#ffffff";
+
+
+    /*
+     * Cahaya utama.
+     */
+
+    ctx.fillStyle =
+      starColor;
+
+    ctx.shadowColor =
+      glowColor;
+
+    ctx.shadowBlur =
+      this.bright
+      ? 14
+      : 7;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      this.x,
+      this.y,
+      this.size,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    /* =====================================================
+       ✦ BINTANG BERSINAR
+    ===================================================== */
+
+    if (
+      this.bright &&
+      this.alpha > 0.62
+    ) {
+
+      /*
+       * Semakin terang,
+       * semakin panjang sinarnya.
+       */
+
+      const intensity =
+        (this.alpha - 0.62) /
+        0.60;
+
+
+      const ray =
+        this.rayLength +
+        intensity * 5;
+
+
+      ctx.globalAlpha =
+        Math.min(
+          this.alpha * 0.85,
+          1
+        );
+
+
+      ctx.strokeStyle =
+        starColor;
+
+      ctx.lineWidth =
+        0.7;
+
+
+      ctx.shadowColor =
+        glowColor;
+
+      ctx.shadowBlur =
+        12;
+
+
+      /*
+       * Sinar horizontal.
+       */
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        this.x - ray,
+        this.y
+      );
+
+      ctx.lineTo(
+        this.x + ray,
+        this.y
+      );
+
+      ctx.stroke();
+
+
+      /*
+       * Sinar vertikal.
+       */
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        this.x,
+        this.y - ray
+      );
+
+      ctx.lineTo(
+        this.x,
+        this.y + ray
+      );
+
+      ctx.stroke();
+
+
+      /*
+       * Sinar diagonal yang lebih tipis.
+       */
+
+      ctx.globalAlpha =
+        Math.min(
+          this.alpha * 0.45,
+          0.7
+        );
+
+      ctx.lineWidth =
+        0.45;
+
+
+      const diagonal =
+        ray * 0.65;
+
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        this.x - diagonal,
+        this.y - diagonal
+      );
+
+      ctx.lineTo(
+        this.x + diagonal,
+        this.y + diagonal
+      );
+
+      ctx.moveTo(
+        this.x + diagonal,
+        this.y - diagonal
+      );
+
+      ctx.lineTo(
+        this.x - diagonal,
+        this.y + diagonal
+      );
+
+      ctx.stroke();
+
+    }
+
+
+    ctx.restore();
+
+  }
+
+}
+
+
+/* =========================================================
+   CREATE STARS
+========================================================= */
+
+function createStars() {
+
+  stars = [];
+
+
+  const area =
+    window.innerWidth *
+    window.innerHeight;
+
+
+  const amount =
+    Math.min(
+      150,
+      Math.max(
+        80,
+        Math.floor(
+          area / 6000
+        )
+      )
+    );
+
+
+  for (
+    let i = 0;
+    i < amount;
+    i++
+  ) {
+
+    stars.push(
+      new Star()
+    );
+
+  }
+
+}
+
+createStars();
+
+
+/* =========================================================
+   🏮 LAMPION
+========================================================= */
+
+class Lantern {
+
+  constructor() {
+
+    this.reset();
+
+  }
+
+
+  reset() {
+
+    /*
+     * Posisi horizontal.
+     */
+
+    this.x =
+      Math.random() *
+      window.innerWidth;
+
+
+    /*
+     * Mulai dari bawah layar.
+     */
+
+    this.y =
+      window.innerHeight +
+      Math.random() * 100;
+
+
+    /*
+     * Variasi ukuran.
+     */
+
+    this.size =
+      Math.random() * 0.55 +
+      0.55;
+
+
+    /*
+     * 🚀 Sedikit lebih cepat
+     * daripada versi sebelumnya.
+     */
+
+    this.speed =
+      Math.random() * 0.80 +
+      0.60;
+
+
+    /*
+     * Gerakan angin.
+     */
+
+    this.swayPhase =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    this.swaySpeed =
+      Math.random() * 0.010 +
+      0.006;
+
+
+    this.swayAmount =
+      Math.random() * 0.50 +
+      0.18;
+
+
+    this.tilt = 0;
+
+
+    /*
+     * Lampion mulai redup,
+     * kemudian fade-in.
+     */
+
+    this.opacity = 0;
+
+
+    this.fadeSpeed =
+      Math.random() * 0.008 +
+      0.005;
+
+
+    this.state =
+      "fadeIn";
+
+
+    /*
+     * Cahaya api.
+     */
+
+    this.glowPhase =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    this.glowSpeed =
+      Math.random() * 0.025 +
+      0.012;
+
+
+    this.active = true;
+
+  }
+
+
+  update() {
+
+    if (!this.active)
+      return;
+
+
+    /* =====================================================
+       GERAK KE ATAS
+    ===================================================== */
+
+    this.y -=
+      this.speed;
+
+
+    /* =====================================================
+       GERAKAN ANGIN
+    ===================================================== */
+
+    this.swayPhase +=
+      this.swaySpeed;
+
+
+    const wind =
+      Math.sin(
+        this.swayPhase
+      ) *
+      this.swayAmount;
+
+
+    this.x +=
+      wind * 0.10;
+
+
+    this.tilt =
+      wind * 0.04;
+
+
+    /* =====================================================
+       CAHAYA API
+    ===================================================== */
+
+    this.glowPhase +=
+      this.glowSpeed;
+
+
+    /* =====================================================
+       FADE IN
+    ===================================================== */
+
+    if (
+      this.state === "fadeIn"
+    ) {
+
+      this.opacity +=
+        this.fadeSpeed;
+
+
+      if (
+        this.opacity >= 1
+      ) {
+
+        this.opacity = 1;
+
+        this.state =
+          "flying";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       KELUAR DARI LAYAR
+    ===================================================== */
+
+    /*
+     * TIDAK ADA FADE OUT.
+     *
+     * Lampion akan tetap terlihat
+     * sampai benar-benar keluar
+     * dari bagian atas layar.
+     */
+
+    if (
+      this.y <
+      -180
+    ) {
+
+      this.active =
+        false;
+
+    }
+
+  }
+
+
+  draw() {
+
+    if (!this.active)
+      return;
+
+
+    ctx.save();
+
+
+    ctx.translate(
+      this.x,
+      this.y
+    );
+
+
+    ctx.rotate(
+      this.tilt
+    );
+
+
+    ctx.globalAlpha =
+      this.opacity;
+
+
+    const s =
+      this.size;
+
+
+    /* =====================================================
+       API BERKEDIP LEMBUT
+    ===================================================== */
+
+    const flamePulse =
+      (Math.sin(
+        this.glowPhase
+      ) + 1) / 2;
+
+
+    /* =====================================================
+       OUTER GLOW
+    ===================================================== */
+
+    const glowRadius =
+      40 * s +
+      flamePulse * 8;
+
+
+    const glow =
+      ctx.createRadialGradient(
+        0,
+        6 * s,
+        0,
+        0,
+        6 * s,
+        glowRadius
+      );
+
+
+    glow.addColorStop(
+      0,
+      "rgba(255,220,110,0.38)"
+    );
+
+
+    glow.addColorStop(
+      0.25,
+      "rgba(255,160,40,0.20)"
+    );
+
+
+    glow.addColorStop(
+      1,
+      "rgba(255,100,10,0)"
+    );
+
+
+    ctx.fillStyle =
+      glow;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      0,
+      6 * s,
+      glowRadius,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    /* =====================================================
+       BADAN LAMPION
+    ===================================================== */
+
+    const width =
+      18 * s;
+
+
+    const height =
+      31 * s;
+
+
+    ctx.shadowColor =
+      "#ff9d28";
+
+
+    ctx.shadowBlur =
+      15 * s;
+
+
+    const bodyGradient =
+      ctx.createLinearGradient(
+        0,
+        -height / 2,
+        0,
+        height / 2
+      );
+
+
+    bodyGradient.addColorStop(
+      0,
+      "rgba(175,55,15,0.90)"
+    );
+
+
+    bodyGradient.addColorStop(
+      0.35,
+      "rgba(240,90,20,0.95)"
+    );
+
+
+    bodyGradient.addColorStop(
+      0.70,
+      "rgba(255,145,35,0.90)"
+    );
+
+
+    bodyGradient.addColorStop(
+      1,
+      "rgba(200,65,15,0.90)"
+    );
+
+
+    ctx.fillStyle =
+      bodyGradient;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      -width * 0.68,
+      -height * 0.42
+    );
+
+
+    ctx.quadraticCurveTo(
+      0,
+      -height * 0.58,
+      width * 0.68,
+      -height * 0.42
+    );
+
+
+    ctx.lineTo(
+      width * 0.58,
+      height * 0.34
+    );
+
+
+    ctx.quadraticCurveTo(
+      0,
+      height * 0.50,
+      -width * 0.58,
+      height * 0.34
+    );
+
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /* =====================================================
+       CAHAYA DARI DALAM
+    ===================================================== */
+
+    ctx.shadowBlur = 0;
+
+
+    const innerGlow =
+      ctx.createRadialGradient(
+        0,
+        7 * s,
+        0,
+        0,
+        7 * s,
+        18 * s
+      );
+
+
+    innerGlow.addColorStop(
+      0,
+      "rgba(255,250,190,0.95)"
+    );
+
+
+    innerGlow.addColorStop(
+      0.30,
+      "rgba(255,190,65,0.78)"
+    );
+
+
+    innerGlow.addColorStop(
+      1,
+      "rgba(255,110,15,0)"
+    );
+
+
+    ctx.fillStyle =
+      innerGlow;
+
+
+    ctx.beginPath();
+
+
+    ctx.ellipse(
+      0,
+      7 * s,
+      12 * s,
+      15 * s,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fill();
+
+
+    /* =====================================================
+       RANGKA LAMPION
+    ===================================================== */
+
+    ctx.strokeStyle =
+      "rgba(90,40,12,0.58)";
+
+
+    ctx.lineWidth =
+      0.7 * s;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      -width * 0.58,
+      -height * 0.38
+    );
+
+
+    ctx.lineTo(
+      -width * 0.48,
+      height * 0.30
+    );
+
+
+    ctx.moveTo(
+      width * 0.58,
+      -height * 0.38
+    );
+
+
+    ctx.lineTo(
+      width * 0.48,
+      height * 0.30
+    );
+
+
+    ctx.stroke();
+
+
+    /* =====================================================
+       BAGIAN ATAS
+    ===================================================== */
+
+    ctx.strokeStyle =
+      "rgba(80,35,10,0.70)";
+
+
+    ctx.lineWidth =
+      1 * s;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      -width * 0.55,
+      -height * 0.42
+    );
+
+
+    ctx.quadraticCurveTo(
+      0,
+      -height * 0.57,
+      width * 0.55,
+      -height * 0.42
+    );
+
+
+    ctx.stroke();
+
+
+    /* =====================================================
+       RING BAWAH
+    ===================================================== */
+
+    ctx.strokeStyle =
+      "rgba(75,35,8,0.80)";
+
+
+    ctx.lineWidth =
+      1.1 * s;
+
+
+    ctx.beginPath();
+
+
+    ctx.ellipse(
+      0,
+      height * 0.34,
+      width * 0.48,
+      width * 0.16,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.stroke();
+
+
+    /* =====================================================
+       API
+    ===================================================== */
+
+    ctx.shadowColor =
+      "#fff0a0";
+
+
+    ctx.shadowBlur =
+      12 * s +
+      flamePulse * 6;
+
+
+    const flameGradient =
+      ctx.createRadialGradient(
+        0,
+        height * 0.34,
+        0,
+        0,
+        height * 0.34,
+        7 * s
+      );
+
+
+    flameGradient.addColorStop(
+      0,
+      "#fffde0"
+    );
+
+
+    flameGradient.addColorStop(
+      0.35,
+      "#ffd45a"
+    );
+
+
+    flameGradient.addColorStop(
+      1,
+      "rgba(255,120,15,0)"
+    );
+
+
+    ctx.fillStyle =
+      flameGradient;
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      0,
+      height * 0.34,
+      7 * s,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fill();
+
+
+    /*
+     * Inti api.
+     */
+
+    ctx.fillStyle =
+      "#fff7c8";
+
+
+    ctx.shadowBlur =
+      8 * s;
+
+
+    ctx.beginPath();
+
+
+    ctx.ellipse(
+      0,
+      height * 0.32,
+      2.2 * s,
+      4 * s,
+      0,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fill();
+
+
+    ctx.restore();
+
+  }
+
+}
+
+
+/* =========================================================
+   BUAT LAMPION
+========================================================= */
+
+function spawnLantern() {
+
+  lanterns.push(
+    new Lantern()
+  );
+
+}
+
+
+/* =========================================================
+   JADWAL LAMPION
+========================================================= */
+
+function scheduleLantern() {
+
+  /*
+   * Kalau musik berhenti,
+   * JANGAN buat lampion baru.
+   */
+
+  if (!isPlaying)
+    return;
+
+
+  spawnLantern();
+
+
+  /*
+   * Jarak kemunculan dibuat
+   * sedikit lebih santai.
+   */
+
+  const delay =
+    Math.random() * 1200 +
+    700;
+
+
+  lanternSpawnTimer =
+    setTimeout(
+      scheduleLantern,
+      delay
+    );
+
+}
+
+
+/* =========================================================
+   MULAI LAMPION
+========================================================= */
+
+function startLanterns() {
+
+  /*
+   * Lampion pertama.
+   */
+
+  setTimeout(
+    () => {
+
+      if (isPlaying) {
+
+        spawnLantern();
+
+      }
+
+    },
+    500
+  );
+
+
+  /*
+   * Lampion berikutnya.
+   */
+
+  scheduleLantern();
+
+}
+
+
+/* =========================================================
+   STOP SPAWN LAMPION
+========================================================= */
+
+function stopLanternSpawn() {
+
+  if (
+    lanternSpawnTimer
+  ) {
+
+    clearTimeout(
+      lanternSpawnTimer
+    );
+
+    lanternSpawnTimer =
+      null;
+
+  }
+
+}
+
+
+/* =========================================================
+   CLEANUP
+========================================================= */
+
+function cleanupLanterns() {
+
+  lanterns =
+    lanterns.filter(
+      lantern =>
+        lantern.active
+    );
+
+}
+
+
+/* =========================================================
+   ANIMATION LOOP
+========================================================= */
+
+function animate() {
+
+  ctx.clearRect(
+    0,
+    0,
+    window.innerWidth,
+    window.innerHeight
+  );
+
+
+  /*
+   * BINTANG SELALU BERKEDIP.
+   */
+
+  stars.forEach(
+    star => {
+
+      star.update();
+      star.draw();
+
+    }
+  );
+
+
+  /*
+   * LAMPION TERUS BERGERAK.
+   */
+
+  lanterns.forEach(
+    lantern => {
+
+      lantern.update();
+      lantern.draw();
+
+    }
+  );
+
+
+  cleanupLanterns();
+
+
+  animationId =
+    requestAnimationFrame(
+      animate
+    );
+
+}
+
+
+/* =========================================================
+   AUDIO SETUP
+========================================================= */
+
+function setupAudio() {
+
+  if (audioReady)
+    return;
+
+
+  audioContext =
+    new (
+      window.AudioContext ||
+      window.webkitAudioContext
+    )();
+
+
+  analyser =
+    audioContext.createAnalyser();
+
+
+  analyser.fftSize =
+    512;
+
+
+  analyser.smoothingTimeConstant =
+    0.75;
+
+
+  source =
+    audioContext.createMediaElementSource(
+      music
+    );
+
+
+  source.connect(
+    analyser
+  );
+
+
+  analyser.connect(
+    audioContext.destination
+  );
+
+
+  audioReady = true;
+
+}
+
+
+/* =========================================================
+   PLAY / PAUSE MUSIC
+========================================================= */
+
+async function toggleMusic() {
+
+  /* =====================================================
+     PAUSE
+  ===================================================== */
+
+  if (isPlaying) {
+
+    music.pause();
+
+
+    isPlaying =
+      false;
+
+
+    btn.textContent =
+      "Play Music";
+
+
+    /*
+     * PENTING:
+     *
+     * Kita hanya menghentikan
+     * kemunculan lampion baru.
+     *
+     * Lampion lama TIDAK dihapus.
+     *
+     * Mereka tetap terbang ke atas.
+     */
+
+    stopLanternSpawn();
+
+
+    return;
+
+  }
+
+
+  /* =====================================================
+     PLAY
+  ===================================================== */
+
+  setupAudio();
+
+
+  if (
+    audioContext.state ===
+    "suspended"
+  ) {
+
+    await audioContext.resume();
+
+  }
+
+
+  try {
+
+    await music.play();
+
+
+    isPlaying =
+      true;
+
+
+    btn.textContent =
+      "Pause Music";
+
+
+    startLanterns();
+
+  }
+
+  catch (error) {
+
+    console.log(
+      "Music gagal diputar:",
+      error
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+/*
+ * Background langsung aktif
+ * sejak halaman dibuka.
+ *
+ * Tidak menunggu musik.
+ */
+
+animate();
+
+</script>
+
+</body>
+</html>

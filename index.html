@@ -1,719 +1,2079 @@
-
-
-
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Linktree Futuristik</title>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Choose Your Room</title>
+
+
 <style>
-  /* ===== Background Animasi ===== */
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(270deg, #ff0057, #00f7ff, #2c5364);
-    background-size: 600% 600%;
-    animation: gradientMove 10s ease infinite;
-    color: white;
-    text-align: center;
-    padding: 40px;
-    min-height: 100vh;
-    margin: 0;
-    overflow-y: auto;
-    position: relative;
-  }
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+
+  margin: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+
+/* =========================================
+   BODY / NIGHT SKY
+========================================= */
+
+body {
+
+  font-family:
+    'Segoe UI',
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 35%,
+      #19150b 0%,
+      #090805 45%,
+      #000000 100%
+    );
+
+  color: #d7c890;
+
+  min-height: 100vh;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  position: relative;
+
+}
+
+
+/* =========================================
+   GOLDEN ATMOSPHERE
+========================================= */
+
+body::before {
+
+  content: "";
+
+  position: fixed;
+
+  width: 650px;
+
+  height: 650px;
+
+  left: 50%;
+
+  top: 40%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+
+    radial-gradient(
+      circle,
+      rgba(215, 200, 144, 0.08),
+      transparent 68%
+    );
+
+  animation:
+    roomGlow 8s ease-in-out infinite alternate;
+
+  pointer-events: none;
+
+  z-index: 0;
+
+}
+
+
+@keyframes roomGlow {
+
+  0% {
+
+    transform:
+      translate(-50%, -50%)
+      scale(0.85);
+
+    opacity: 0.45;
+
   }
 
-  /* ===== Foto Profil Glow ===== */
-  .profile-pic {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid #00f7ff;
-    box-shadow: 0px 0px 25px #00f7ff;
-    margin-bottom: 15px;
-    animation: glow 2s infinite alternate;
-    transition: transform 0.3s ease;
-    position: relative;
-    z-index: 2;
-  }
-  @keyframes glow {
-    from { box-shadow: 0 0 15px #00f7ff; }
-    to { box-shadow: 0 0 35px #00f7ff; }
-  }
-  .profile-pic:hover {
-    animation: shake 0.5s;
-  }
-  @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    25% { transform: translate(-1px, 2px) rotate(-1deg); }
-    50% { transform: translate(-3px, 1px) rotate(1deg); }
-    75% { transform: translate(3px, 1px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  100% {
+
+    transform:
+      translate(-50%, -50%)
+      scale(1.15);
+
+    opacity: 1;
+
   }
 
-  /* ===== Neon Text ===== */
-  h1 {
-    margin: 10px 0;
-    font-size: 26px;
-    letter-spacing: 2px;
-    color: #00f7ff;
-    text-shadow: 0 0 5px #00f7ff, 0 0 10px #00f7ff, 0 0 20px #00f7ff;
-    position: relative;
-    z-index: 2;
-  }
-  p {
-    font-size: 12px;
-    margin-bottom: 30px;
-    opacity: 0.9;
-    position: relative;
-    z-index: 2;
+}
+
+
+/* =========================================
+   NORMAL STARS
+========================================= */
+
+.star {
+
+  position: fixed;
+
+  width: 3px;
+
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+
+    0 0 5px #ffffff,
+
+    0 0 10px #d7c890,
+
+    0 0 18px rgba(215, 200, 144, 0.7);
+
+  pointer-events: none;
+
+  z-index: 1;
+
+  animation:
+    twinkle 3s ease-in-out infinite alternate;
+
+}
+
+
+/* =========================================
+   BIG STARS
+========================================= */
+
+.star.big {
+
+  width: 4px;
+
+  height: 4px;
+
+  box-shadow:
+
+    0 0 5px #ffffff,
+
+    0 0 12px #ffffff,
+
+    0 0 25px #d7c890,
+
+    0 0 40px rgba(215, 200, 144, 0.8);
+
+}
+
+
+/* =========================================
+   STAR TWINKLE
+========================================= */
+
+@keyframes twinkle {
+
+  0% {
+
+    opacity: 0.25;
+
+    transform:
+      scale(0.65);
+
   }
 
-  /* ===== Tombol Neon ===== */
-  .link-btn {
-    display: block;
-    width: 85%;
-    max-width: 320px;
-    margin: 15px auto;
+  50% {
+
+    opacity: 0.65;
+
+    transform:
+      scale(1);
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      scale(1.55);
+
+  }
+
+}
+
+
+/* =========================================
+   SPARKLE STAR
+========================================= */
+
+.star.sparkle {
+
+  width: 3px;
+
+  height: 3px;
+
+  box-shadow:
+
+    0 0 6px #ffffff,
+
+    0 0 15px #ffffff,
+
+    0 0 30px #d7c890;
+
+}
+
+
+/* Horizontal light */
+
+.star.sparkle::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 30px;
+
+  height: 1px;
+
+  left: -13px;
+
+  top: 1px;
+
+  background:
+
+    linear-gradient(
+      to right,
+      transparent,
+      #ffffff,
+      transparent
+    );
+
+}
+
+
+/* Vertical light */
+
+.star.sparkle::after {
+
+  content: "";
+
+  position: absolute;
+
+  width: 1px;
+
+  height: 30px;
+
+  left: 1px;
+
+  top: -13px;
+
+  background:
+
+    linear-gradient(
+      to bottom,
+      transparent,
+      #ffffff,
+      transparent
+    );
+
+}
+
+
+/* =========================================
+   METEOR CANVAS
+========================================= */
+
+#meteorCanvas {
+
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 2;
+
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container {
+
+  position: relative;
+
+  z-index: 5;
+
+  width: 90%;
+
+  max-width: 430px;
+
+  margin: 0 auto;
+
+  min-height: 100vh;
+
+}
+
+
+/* =========================================
+   TOP SECTION
+========================================= */
+
+.top-section {
+
+  position: absolute;
+
+  top: 30px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  width: 100%;
+
+}
+
+
+/* =========================================
+   WELCOME TEXT
+========================================= */
+
+.welcome {
+
+  margin: 0;
+
+  color: #e7d99e;
+
+  font-size: 21px;
+
+  font-weight: 500;
+
+  letter-spacing: 1px;
+
+  text-shadow:
+
+    0 0 5px #d7c890,
+
+    0 0 12px rgba(215,200,144,0.8),
+
+    0 0 25px rgba(215,200,144,0.45);
+
+  opacity: 0;
+
+  animation:
+    welcomeIn 1.8s ease forwards;
+
+}
+
+
+/* =========================================
+   WELCOME CURVE
+========================================= */
+
+.welcome span {
+
+  display: inline-block;
+
+}
+
+
+.welcome span:nth-child(1),
+.welcome span:nth-child(2) {
+
+  transform:
+    translateY(0);
+
+}
+
+
+.welcome span:nth-child(3),
+.welcome span:nth-child(4) {
+
+  transform:
+    translateY(4px);
+
+}
+
+
+.welcome span:nth-child(5),
+.welcome span:nth-child(6),
+.welcome span:nth-child(7) {
+
+  transform:
+    translateY(8px);
+
+}
+
+
+.welcome span:nth-child(8),
+.welcome span:nth-child(9) {
+
+  transform:
+    translateY(10px);
+
+}
+
+
+.welcome span:nth-child(10),
+.welcome span:nth-child(11) {
+
+  transform:
+    translateY(8px);
+
+}
+
+
+.welcome span:nth-child(12),
+.welcome span:nth-child(13) {
+
+  transform:
+    translateY(5px);
+
+}
+
+
+.welcome span:nth-child(14),
+.welcome span:nth-child(15) {
+
+  transform:
+    translateY(2px);
+
+}
+
+
+/* =========================================
+   WELCOME ANIMATION
+========================================= */
+
+@keyframes welcomeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(-15px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+/* =========================================
+   NAME
+========================================= */
+
+.name {
+
+  margin:
+    25px 0 0;
+
+  font-size: 32px;
+
+  letter-spacing: 5px;
+
+  color: #f2d879;
+
+  opacity: 0;
+
+  transform:
+    scale(0.9);
+
+  text-shadow:
+
+    0 0 5px #d7c890,
+
+    0 0 12px #d7c890,
+
+    0 0 25px rgba(215,200,144,0.8),
+
+    0 0 45px rgba(215,200,144,0.35);
+
+  animation:
+    nameIn 1.5s ease forwards;
+
+  animation-delay:
+    1s;
+
+}
+
+
+/* =========================================
+   NAME ANIMATION
+========================================= */
+
+@keyframes nameIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scale(0.9);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+  }
+
+}
+
+
+/* =========================================
+   PHOTO FRAME
+========================================= */
+
+.photo-frame {
+
+  position: absolute;
+
+  top: 145px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  width: 210px;
+
+  height: 210px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 6;
+
+}
+
+
+/* =========================================
+   OUTER ORNAMENT RING
+========================================= */
+
+.frame-outer {
+
+  position: absolute;
+
+  width: 210px;
+
+  height: 210px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid #b99545;
+
+  box-shadow:
+
+    0 0 0 2px #4f3917,
+
+    0 0 0 4px #d7b75b,
+
+    0 0 0 6px #5c421a,
+
+    0 0 12px rgba(215,183,91,0.35);
+
+}
+
+
+/* =========================================
+   INNER ORNAMENT RING
+========================================= */
+
+.frame-inner {
+
+  position: absolute;
+
+  width: 192px;
+
+  height: 192px;
+
+  border-radius: 50%;
+
+  border:
+    2px solid #d9bd70;
+
+  box-shadow:
+
+    inset 0 0 0 2px #654919,
+
+    inset 0 0 12px rgba(215,183,91,0.3);
+
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo-area {
+
+  position: relative;
+
+  width: 174px;
+
+  height: 174px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  background: #080706;
+
+  border:
+    2px solid #8e6a29;
+
+  box-shadow:
+
+    0 0 0 2px #30220e,
+
+    0 0 12px rgba(215,183,91,0.3);
+
+  z-index: 3;
+
+}
+
+
+.photo-area img {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+}
+
+
+/* =========================================
+   UKIRAN ATAS / BAWAH
+========================================= */
+
+.frame-decoration {
+
+  position: absolute;
+
+  z-index: 8;
+
+  color: #e4c56f;
+
+  font-family: Georgia, serif;
+
+  font-size: 24px;
+
+  line-height: 1;
+
+  text-shadow:
+
+    0 1px 2px #000,
+
+    0 0 5px rgba(215,183,91,0.5);
+
+}
+
+
+/* ATAS */
+
+.frame-top {
+
+  top: -9px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+}
+
+
+/* BAWAH */
+
+.frame-bottom {
+
+  bottom: -9px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%)
+    rotate(180deg);
+
+}
+
+
+/* KIRI */
+
+.frame-left {
+
+  left: -9px;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%)
+    rotate(-90deg);
+
+}
+
+
+/* KANAN */
+
+.frame-right {
+
+  right: -9px;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%)
+    rotate(90deg);
+
+}
+
+
+/* =========================================
+   FRAME ORNAMENT DOTS
+========================================= */
+
+.frame-dot {
+
+  position: absolute;
+
+  width: 5px;
+
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #d9b85e;
+
+  box-shadow:
+
+    0 0 4px rgba(215,183,91,0.65);
+
+  z-index: 9;
+
+}
+
+
+.dot-1 {
+
+  top: 16px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+}
+
+
+.dot-2 {
+
+  bottom: 16px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+}
+
+
+.dot-3 {
+
+  left: 16px;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+}
+
+
+.dot-4 {
+
+  right: 16px;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+}
+
+
+/* =========================================
+   FRAME SUBTLE FLOAT
+========================================= */
+
+.photo-frame {
+
+  animation:
+    frameFloat 5s ease-in-out infinite;
+
+}
+
+
+@keyframes frameFloat {
+
+  0%,
+  100% {
+
+    margin-top: 0;
+
+  }
+
+  50% {
+
+    margin-top: -4px;
+
+  }
+
+}
+
+
+/* =========================================
+   MENU SECTION
+========================================= */
+
+.menu-section {
+
+  position: absolute;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  width: 100%;
+
+  top: 55%;
+
+}
+
+
+/* =========================================
+   CHOOSE YOUR ROOM
+========================================= */
+
+.subtitle {
+
+  margin:
+    0 0 30px;
+
+  font-size: 13px;
+
+  letter-spacing: 3px;
+
+  color: #c9bb8a;
+
+  opacity: 0;
+
+  animation:
+    fadeIn 1.5s ease forwards;
+
+  animation-delay:
+    1.8s;
+
+}
+
+
+/* =========================================
+   FADE IN
+========================================= */
+
+@keyframes fadeIn {
+
+  from {
+
+    opacity: 0;
+
+  }
+
+  to {
+
+    opacity: 0.85;
+
+  }
+
+}
+
+
+/* =========================================
+   THEME BUTTON
+========================================= */
+
+.theme-btn {
+
+  display: block;
+
+  width: 100%;
+
+  padding: 17px;
+
+  margin: 16px 0;
+
+  border-radius: 15px;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  opacity: 0;
+
+  transform:
+    translateY(20px);
+
+  animation:
+    buttonIn 1s ease forwards;
+
+  transition:
+
+    transform 0.35s ease,
+
+    box-shadow 0.35s ease,
+
+    background 0.35s ease;
+
+}
+
+
+/* =========================================
+   BUTTON ANIMATION
+========================================= */
+
+@keyframes buttonIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(20px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+/* =========================================
+   LIGHT NEON
+========================================= */
+
+.light-btn {
+
+  color: #00f7ff;
+
+  border:
+    2px solid #00f7ff;
+
+  background:
+    rgba(0,247,255,0.025);
+
+  box-shadow:
+
+    0 0 8px rgba(0,247,255,0.45);
+
+  animation-delay:
+    2.3s;
+
+}
+
+
+.light-btn:hover {
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  background:
+    rgba(0,247,255,0.1);
+
+  box-shadow:
+
+    0 0 15px #00f7ff,
+
+    0 0 30px #00f7ff,
+
+    0 0 55px rgba(0,247,255,0.5);
+
+}
+
+
+/* =========================================
+   NIGHT GOLD
+========================================= */
+
+.gold-btn {
+
+  color: #f0d878;
+
+  border:
+    2px solid #d7c890;
+
+  background:
+    rgba(215,200,144,0.025);
+
+  box-shadow:
+
+    0 0 8px rgba(215,200,144,0.45);
+
+  animation-delay:
+    2.6s;
+
+}
+
+
+.gold-btn:hover {
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  background:
+    rgba(215,200,144,0.1);
+
+  box-shadow:
+
+    0 0 15px #d7c890,
+
+    0 0 30px #d7c890,
+
+    0 0 55px rgba(215,200,144,0.5);
+
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+
+  margin-top: 30px;
+
+  font-size: 10px;
+
+  color: #d7c890;
+
+  opacity: 0;
+
+  animation:
+    footerIn 1.5s ease forwards;
+
+  animation-delay:
+    3s;
+
+}
+
+
+@keyframes footerIn {
+
+  from {
+
+    opacity: 0;
+
+  }
+
+  to {
+
+    opacity: 0.45;
+
+  }
+
+}
+
+
+/* =========================================
+   MOBILE ADJUSTMENT
+========================================= */
+
+@media (max-height: 650px) {
+
+  .top-section {
+
+    top: 20px;
+
+  }
+
+  .welcome {
+
+    font-size: 18px;
+
+  }
+
+  .name {
+
+    font-size: 28px;
+
+    margin-top: 18px;
+
+  }
+
+
+  /* FOTO DIPERKECIL DAN DINAIKKAN
+     PADA LAYAR PENDEK */
+
+  .photo-frame {
+
+    top: 112px;
+
+    width: 145px;
+
+    height: 145px;
+
+  }
+
+  .frame-outer {
+
+    width: 145px;
+
+    height: 145px;
+
+  }
+
+  .frame-inner {
+
+    width: 131px;
+
+    height: 131px;
+
+  }
+
+  .photo-area {
+
+    width: 115px;
+
+    height: 115px;
+
+  }
+
+  .frame-decoration {
+
+    font-size: 20px;
+
+  }
+
+
+  .menu-section {
+
+    top: 52%;
+
+  }
+
+
+  .theme-btn {
+
     padding: 14px;
-    background: transparent;
-    border: 2px solid #00f7ff;
-    color: #00f7ff;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 12px;
-    transition: 0.3s;
-    box-shadow: 0px 0px 12px #00f7ff;
-    position: relative;
-    z-index: 2;
-  }
-  .link-btn:hover {
-    background: #00f7ff;
-    color: black;
-    box-shadow: 0px 0 25px #00f7ff, 0 0 50px #00f7ff;
-    transform: scale(1.1) rotate(1deg);
+
+    margin: 12px 0;
+
   }
 
-  /* ===== Tombol Musik Futuristik ===== */
-  .music-btn {
-    margin-top: 20px;
-    padding: 12px 25px;
-    background: transparent;
-    border: 2px solid #ff0057;
-    color: #ff0057;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 15px #ff0057, 0 0 30px #ff0057;
-    position: relative;
-    z-index: 2;
-  }
-  .music-btn:hover {
-    background: #ff0057;
-    color: #000;
-    transform: scale(1.1);
-    box-shadow: 0 0 25px #ff0057, 0 0 50px #ff0057;
+}
+
+
+/* =========================================
+   VERY SHORT SCREEN
+========================================= */
+
+@media (max-height: 560px) {
+
+  .photo-frame {
+
+    top: 100px;
+
+    transform:
+      translateX(-50%)
+      scale(0.82);
+
   }
 
-  footer {
-    margin-top: 40px;
-    font-size: 12px;
-    opacity: 0.7;
-    position: relative;
-    z-index: 2;
+  .menu-section {
+
+    top: 54%;
+
   }
 
-  /* ===== Canvas untuk partikel ===== */
-  #particleCanvas {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 1;
-  }
+}
+
 </style>
+
 </head>
+
+
 <body>
 
-<!-- Canvas Partikel -->
-<canvas id="particleCanvas"></canvas>
 
-<!-- Foto Profil -->
-<img src="imagepp/profile.jpg" alt="Profile" class="profile-pic">
+<!-- =========================================
+     STARS
+========================================= -->
 
-<!-- Nama & Deskripsi -->
-<h1>🇵🇸 𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑 🇮🇩</h1>
-<p>''Apapun Yang Terjadi Aku Akan Tetap Memilihmu''</p>
+<div
+  class="star"
+  style="
+    top:7%;
+    left:10%;
+    animation-delay:.3s;
+  ">
+</div>
 
-<!-- Daftar Link -->
-<a href="https://tiktok.com/@zifarla_" class="link-btn">TikTok</a>
-<a href="https://instagram.com/zyderr__" class="link-btn">Instagram</a>
-<a href="https://www.facebook.com/share/1RvruY8odr/" class="link-btn">Facebook</a>
-<a href="https://youtube.com/@Nomadeen" class="link-btn">YouTube</a>
-<a href="https://t.me/FreeZiellone" class="link-btn">Telegram</a>
-<a href="https://wa.me/qr/XN7L5X6YQK4ZE1" class="link-btn">WhatsApp</a>
 
-<!-- Tombol Musik -->
-<button class="music-btn" onclick="toggleMusic()">Play Music</button>
-<audio id="bgMusic" loop>
-  <source src="musicbg/lagu3.mp3" type="audio/mpeg">
-  Browser kamu tidak mendukung pemutar musik.
-</audio>
+<div
+  class="star"
+  style="
+    top:14%;
+    left:80%;
+    animation-delay:1s;
+  ">
+</div>
 
-<!-- Footer -->
-<footer>This Room Was Created By ` 𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑 ` In September 2025®</footer>
 
+<div
+  class="star big"
+  style="
+    top:24%;
+    left:24%;
+    animation-delay:1.5s;
+  ">
+</div>
+
+
+<div
+  class="star sparkle"
+  style="
+    top:31%;
+    left:88%;
+    animation-delay:.8s;
+  ">
+</div>
+
+
+<div
+  class="star big"
+  style="
+    top:43%;
+    left:8%;
+    animation-delay:1.8s;
+  ">
+</div>
+
+
+<div
+  class="star"
+  style="
+    top:52%;
+    left:84%;
+    animation-delay:.9s;
+  ">
+</div>
+
+
+<div
+  class="star sparkle"
+  style="
+    top:64%;
+    left:18%;
+    animation-delay:1.3s;
+  ">
+</div>
+
+
+<div
+  class="star big"
+  style="
+    top:73%;
+    left:73%;
+    animation-delay:.4s;
+  ">
+</div>
+
+
+<div
+  class="star"
+  style="
+    top:84%;
+    left:43%;
+    animation-delay:1.7s;
+  ">
+</div>
+
+
+<div
+  class="star sparkle"
+  style="
+    top:91%;
+    left:92%;
+    animation-delay:.8s;
+  ">
+</div>
+
+
+<div
+  class="star"
+  style="
+    top:38%;
+    left:56%;
+    animation-delay:2s;
+  ">
+</div>
+
+
+<div
+  class="star"
+  style="
+    top:78%;
+    left:5%;
+    animation-delay:1.2s;
+  ">
+</div>
+
+
+<!-- =========================================
+     METEOR CANVAS
+========================================= -->
+
+<canvas id="meteorCanvas"></canvas>
+
+
+<!-- =========================================
+     MAIN CONTAINER
+========================================= -->
+
+<div class="container">
+
+
+  <!-- =======================================
+       TOP SECTION
+  ======================================== -->
+
+  <div class="top-section">
+
+
+    <div class="welcome">
+
+      <span>𝖂</span>
+      <span>𝖊</span>
+      <span>𝖑</span>
+      <span>𝖈</span>
+      <span>𝖔</span>
+      <span>𝖒</span>
+      <span>𝖊</span>
+
+      <span>&nbsp;</span>
+
+      <span>𝖙</span>
+      <span>𝖔</span>
+
+      <span>&nbsp;</span>
+
+      <span>𝖒</span>
+      <span>𝖞</span>
+
+      <span>&nbsp;</span>
+
+      <span>𝖗</span>
+      <span>𝖔</span>
+      <span>𝖔</span>
+      <span>𝖒</span>
+
+    </div>
+
+
+    <h1 class="name">
+
+      𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑
+
+    </h1>
+
+
+  </div>
+
+
+  <!-- =======================================
+       PHOTO FRAME
+  ======================================== -->
+
+  <div class="photo-frame">
+
+
+    <div class="frame-outer"></div>
+
+    <div class="frame-inner"></div>
+
+
+    <div class="photo-area">
+
+      <img
+        src="imagepp/profile.jpg"
+        alt="Afrizal"
+      >
+
+    </div>
+
+
+    <!-- ORNAMEN -->
+
+    <div
+      class="frame-decoration frame-top"
+    >
+      ❦
+    </div>
+
+
+    <div
+      class="frame-decoration frame-bottom"
+    >
+      ❦
+    </div>
+
+
+    <div
+      class="frame-decoration frame-left"
+    >
+      ❧
+    </div>
+
+
+    <div
+      class="frame-decoration frame-right"
+    >
+      ❧
+    </div>
+
+
+    <!-- TITIK UKIRAN -->
+
+    <div
+      class="frame-dot dot-1"
+    ></div>
+
+
+    <div
+      class="frame-dot dot-2"
+    ></div>
+
+
+    <div
+      class="frame-dot dot-3"
+    ></div>
+
+
+    <div
+      class="frame-dot dot-4"
+    ></div>
+
+
+  </div>
+
+
+  <!-- =======================================
+       MENU SECTION
+  ======================================== -->
+
+  <div class="menu-section">
+
+
+    <div class="subtitle">
+
+      ✦ Choose Your Room ✦
+
+    </div>
+
+
+    <a
+      href="Themes/lightneon.html"
+      class="theme-btn light-btn"
+    >
+
+      ✦ LIGHT NEON ✦
+
+    </a>
+
+
+    <a
+      href="Themes/nightgold.html"
+      class="theme-btn gold-btn"
+    >
+
+      ✦ NIGHT GOLD ✦
+
+    </a>
+
+
+    <footer>
+
+      Copyright © August 2026
+      𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑<br>
+      All Rights Reserved
+
+    </footer>
+
+
+  </div>
+
+
+</div>
+
+
+<!-- =========================================
+     NATURAL METEOR SYSTEM
+========================================= -->
 
 <script>
 
-const canvas = document.getElementById("particleCanvas");
-const ctx = canvas.getContext("2d");
+const meteorCanvas =
+  document.getElementById("meteorCanvas");
 
-let particles = [];
-let animationId;
-
-const music = document.getElementById("bgMusic");
-const btn = document.querySelector(".music-btn");
-
-let isPlaying = false;
-
-let audioContext = null;
-let analyser = null;
-let source = null;
-let dataArray = null;
-let audioReady = false;
-
-let bass = 0;
-let lastBass = 0;
-let pulse = 0;
+const meteorCtx =
+  meteorCanvas.getContext("2d");
 
 
-// ==============================
-// AUDIO
-// ==============================
+let meteors = [];
 
-function setupAudio() {
+let meteorWidth =
+  window.innerWidth;
 
-  if (audioReady) return;
-
-  audioContext =
-    new (window.AudioContext ||
-         window.webkitAudioContext)();
-
-  analyser = audioContext.createAnalyser();
-
-  analyser.fftSize = 512;
-
-  analyser.smoothingTimeConstant = 0.35;
-
-  source =
-    audioContext.createMediaElementSource(music);
-
-  source.connect(analyser);
-
-  analyser.connect(audioContext.destination);
-
-  dataArray =
-    new Uint8Array(analyser.frequencyBinCount);
-
-  audioReady = true;
-}
+let meteorHeight =
+  window.innerHeight;
 
 
-// ==============================
-// CANVAS
-// ==============================
+/* =========================================
+   RESIZE CANVAS
+========================================= */
 
-function resizeCanvas() {
+function resizeMeteorCanvas() {
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  meteorWidth =
+    window.innerWidth;
+
+  meteorHeight =
+    window.innerHeight;
+
+  meteorCanvas.width =
+    meteorWidth;
+
+  meteorCanvas.height =
+    meteorHeight;
 
 }
+
 
 window.addEventListener(
   "resize",
-  resizeCanvas
+  resizeMeteorCanvas
 );
 
-resizeCanvas();
+
+resizeMeteorCanvas();
 
 
-// ==============================
-// PARTICLE
-// ==============================
+/* =========================================
+   NATURAL METEOR
+========================================= */
 
-class Particle {
+class NaturalMeteor {
 
   constructor() {
 
-    this.reset();
+    this.reset(true);
 
   }
 
 
-  reset() {
-
-    this.x =
-      Math.random() * canvas.width;
-
-    this.y =
-      canvas.height +
-      Math.random() * 100;
-
-    this.baseSize =
-      Math.random() * 2.5 + 0.8;
-
-    this.baseSpeed =
-      Math.random() * 7 + 4;
-
-    this.speedX =
-      (Math.random() - 0.5) * 0.5;
-
-    this.color =
-      Math.random() < 0.5
-      ? "#00f7ff"
-      : "#ff0057";
-
-    this.alpha =
-      Math.random() * 0.5 + 0.3;
-
-    this.offset =
-      Math.random() * Math.PI * 2;
+  reset(firstSpawn = false) {
 
     /*
-     * Menandakan particle masih hidup.
+     * Meteor selalu muncul
+     * dari bagian ATAS layar.
+     *
+     * Tetapi titik X berbeda-beda.
      */
 
-    this.active = true;
+    this.x =
+      Math.random() *
+      meteorWidth;
+
+    this.y =
+      -20 -
+      Math.random() *
+      250;
+
+
+    /*
+     * SEMUA METEOR
+     * MENGGUNAKAN ARAH YANG SAMA.
+     *
+     * Atas → bawah agak ke kiri.
+     */
+
+    const angle =
+      Math.PI / 2 + 0.35;
+
+
+    /*
+     * Kecepatan meteor.
+     */
+
+    this.speed =
+      5 +
+      Math.random() * 4;
+
+
+    this.vx =
+      Math.cos(angle) *
+      this.speed;
+
+
+    this.vy =
+      Math.sin(angle) *
+      this.speed;
+
+
+    /*
+     * UKURAN KECIL.
+     */
+
+    this.size =
+      1.1 +
+      Math.random() * 1.2;
+
+
+    /*
+     * EKOR PENDEK.
+     */
+
+    this.tail =
+      45 +
+      Math.random() * 40;
+
+
+    /*
+     * Transparansi.
+     */
+
+    this.alpha =
+      0.55 +
+      Math.random() * 0.35;
+
+
+    /*
+     * Delay agar meteor
+     * tidak muncul bersamaan.
+     */
+
+    this.delay =
+      firstSpawn
+      ? Math.random() * 180
+      : Math.random() * 90;
 
   }
 
+
+  /* =======================================
+     UPDATE
+  ======================================== */
 
   update() {
 
-    /*
-     * Kalau particle sudah selesai,
-     * jangan diproses lagi.
-     */
+    if (this.delay > 0) {
 
-    if (!this.active) return;
+      this.delay--;
 
-
-    // ==============================
-    // GERAKAN NORMAL
-    // ==============================
-
-    this.y -=
-      this.baseSpeed;
-
-    this.x +=
-      this.speedX;
-
-
-    // ==============================
-    // HENTAKAN BASS
-    // ==============================
-
-    if (pulse > 0.02) {
-
-      this.y -=
-        pulse * 7;
+      return;
 
     }
 
 
-    // ==============================
-    // KELUAR DARI LAYAR
-    // ==============================
-
-    if (this.y < -10) {
-
-      /*
-       * KALAU MUSIK MASIH BERMAIN:
-       *
-       * particle kembali muncul
-       * dari bawah.
-       */
-
-      if (isPlaying) {
-
-        this.reset();
-
-      }
+    this.x +=
+      this.vx;
 
 
-      /*
-       * KALAU MUSIK SUDAH BERHENTI:
-       *
-       * jangan reset lagi.
-       *
-       * Biarkan particle selesai
-       * dan hilang setelah keluar layar.
-       */
+    this.y +=
+      this.vy;
 
-      else {
 
-        this.active = false;
+    /*
+     * Jika meteor keluar layar,
+     * buat meteor baru dari atas
+     * dengan titik berbeda.
+     */
 
-      }
+    if (
+
+      this.y >
+        meteorHeight + 100 ||
+
+      this.x <
+        -150 ||
+
+      this.x >
+        meteorWidth + 150
+
+    ) {
+
+      this.reset();
 
     }
 
   }
 
 
+  /* =======================================
+     DRAW
+  ======================================== */
+
   draw() {
 
-    /*
-     * Jangan menggambar particle
-     * yang sudah keluar layar.
-     */
-
-    if (!this.active) return;
+    if (this.delay > 0)
+      return;
 
 
     /*
-     * Ukuran normal
-     * + hentakan beat
+     * Panjang arah gerakan.
      */
 
-    const size =
-      this.baseSize +
-      pulse * 7;
-
-
-    /*
-     * Cahaya normal
-     * + FLASH saat beat
-     */
-
-    const alpha =
-      Math.min(
-        1,
-        this.alpha +
-        pulse * 0.8
+    const length =
+      Math.sqrt(
+        this.vx * this.vx +
+        this.vy * this.vy
       );
 
 
-    ctx.save();
+    const dirX =
+      this.vx / length;
 
-    ctx.globalAlpha =
-      alpha;
 
-    ctx.fillStyle =
-      this.color;
+    const dirY =
+      this.vy / length;
 
 
     /*
-     * EFEK CAHAYA DJ
+     * EKOR DI BELAKANG KEPALA.
      */
 
-    ctx.shadowColor =
-      this.color;
-
-    ctx.shadowBlur =
-      4 +
-      pulse * 70;
+    const tailX =
+      this.x -
+      dirX *
+      this.tail;
 
 
-    ctx.beginPath();
+    const tailY =
+      this.y -
+      dirY *
+      this.tail;
 
-    ctx.arc(
+
+    /*
+     * GRADIENT EKOR.
+     *
+     * Jauh = transparan.
+     * Dekat kepala = terang.
+     */
+
+    const gradient =
+      meteorCtx.createLinearGradient(
+        tailX,
+        tailY,
+        this.x,
+        this.y
+      );
+
+
+    gradient.addColorStop(
+      0,
+      "rgba(215,200,144,0)"
+    );
+
+
+    gradient.addColorStop(
+      0.45,
+      "rgba(215,200,144,0.08)"
+    );
+
+
+    gradient.addColorStop(
+      0.75,
+      "rgba(255,255,255,0.28)"
+    );
+
+
+    gradient.addColorStop(
+      1,
+      "rgba(255,255,255,0.9)"
+    );
+
+
+    /*
+     * GAMBAR EKOR.
+     */
+
+    meteorCtx.save();
+
+
+    meteorCtx.globalAlpha =
+      this.alpha;
+
+
+    meteorCtx.beginPath();
+
+
+    meteorCtx.moveTo(
+      tailX,
+      tailY
+    );
+
+
+    meteorCtx.lineTo(
+      this.x,
+      this.y
+    );
+
+
+    meteorCtx.lineWidth =
+      this.size * 1.4;
+
+
+    meteorCtx.lineCap =
+      "round";
+
+
+    meteorCtx.strokeStyle =
+      gradient;
+
+
+    meteorCtx.shadowColor =
+      "#ffffff";
+
+
+    meteorCtx.shadowBlur =
+      5;
+
+
+    meteorCtx.stroke();
+
+
+    meteorCtx.restore();
+
+
+    /*
+     * HALO KEPALA.
+     */
+
+    const glow =
+      meteorCtx.createRadialGradient(
+        this.x,
+        this.y,
+        0,
+        this.x,
+        this.y,
+        this.size * 4
+      );
+
+
+    glow.addColorStop(
+      0,
+      "rgba(255,255,255,0.9)"
+    );
+
+
+    glow.addColorStop(
+      0.4,
+      "rgba(255,255,255,0.35)"
+    );
+
+
+    glow.addColorStop(
+      1,
+      "rgba(215,200,144,0)"
+    );
+
+
+    meteorCtx.beginPath();
+
+
+    meteorCtx.arc(
       this.x,
       this.y,
-      size,
+      this.size * 4,
       0,
       Math.PI * 2
     );
 
-    ctx.fill();
 
-    ctx.restore();
+    meteorCtx.fillStyle =
+      glow;
+
+
+    meteorCtx.fill();
+
+
+    /*
+     * KEPALA METEOR.
+     */
+
+    meteorCtx.save();
+
+
+    meteorCtx.beginPath();
+
+
+    meteorCtx.arc(
+      this.x,
+      this.y,
+      this.size,
+      0,
+      Math.PI * 2
+    );
+
+
+    meteorCtx.fillStyle =
+      "#ffffff";
+
+
+    meteorCtx.shadowColor =
+      "#ffffff";
+
+
+    meteorCtx.shadowBlur =
+      7;
+
+
+    meteorCtx.fill();
+
+
+    meteorCtx.restore();
 
   }
 
 }
 
 
-// ==============================
-// JUMLAH PARTICLE
-// ==============================
+/* =========================================
+   JUMLAH METEOR
+========================================= */
 
 for (
   let i = 0;
-  i < 120;
+  i < 7;
   i++
 ) {
 
-  particles.push(
-    new Particle()
+  meteors.push(
+    new NaturalMeteor()
   );
 
 }
 
 
-// ==============================
-// DETEKSI BEAT
-// ==============================
+/* =========================================
+   METEOR ANIMATION
+========================================= */
 
-function detectBeat() {
+function animateMeteors() {
 
-  if (!analyser) return;
-
-  /*
-   * Setelah musik berhenti,
-   * tidak perlu mendeteksi beat baru.
-   */
-
-  if (!isPlaying) {
-
-    pulse *= 0.82;
-
-    return;
-
-  }
-
-
-  analyser.getByteFrequencyData(
-    dataArray
+  meteorCtx.clearRect(
+    0,
+    0,
+    meteorWidth,
+    meteorHeight
   );
 
 
-  /*
-   * Ambil frekuensi bass.
-   */
+  meteors.forEach(
+    meteor => {
 
-  let total = 0;
+      meteor.update();
 
-  let samples = 0;
-
-
-  for (
-    let i = 1;
-    i < 12;
-    i++
-  ) {
-
-    total +=
-      dataArray[i];
-
-    samples++;
-
-  }
-
-
-  const currentBass =
-    total /
-    samples /
-    255;
-
-
-  /*
-   * Perubahan bass.
-   */
-
-  const spike =
-    currentBass -
-    lastBass;
-
-
-  /*
-   * BEAT KUAT
-   */
-
-  if (
-    spike > 0.035 &&
-    currentBass > 0.18
-  ) {
-
-    pulse =
-      Math.min(
-        1,
-        pulse +
-        spike * 10
-      );
-
-  }
-
-
-  /*
-   * Sedikit mengikuti bass.
-   */
-
-  pulse =
-    Math.max(
-      pulse,
-      currentBass * 0.25
-    );
-
-
-  /*
-   * DENYUT TURUN CEPAT
-   */
-
-  pulse *= 0.82;
-
-
-  lastBass =
-    currentBass;
-
-}
-
-
-// ==============================
-// ANIMASI
-// ==============================
-
-function animate() {
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  detectBeat();
-
-
-  particles.forEach(
-    particle => {
-
-      particle.update();
-
-      particle.draw();
+      meteor.draw();
 
     }
   );
 
 
-  /*
-   * Animasi tetap berjalan walaupun
-   * musik dihentikan.
-   *
-   * Ini penting agar particle yang
-   * tersisa tetap bisa terbang
-   * sampai keluar layar.
-   */
-
-  animationId =
-    requestAnimationFrame(
-      animate
-    );
-
-}
-
-
-// ==============================
-// PLAY / PAUSE
-// ==============================
-
-async function toggleMusic() {
-
-
-  // ==============================
-  // PAUSE
-  // ==============================
-
-  if (isPlaying) {
-
-    music.pause();
-
-    isPlaying = false;
-
-    btn.textContent =
-      "Play Music";
-
-    /*
-     * JANGAN:
-     *
-     * cancelAnimationFrame()
-     *
-     * JANGAN:
-     *
-     * clearRect()
-     *
-     * Karena particle yang masih
-     * ada harus tetap terbang.
-     */
-
-    pulse = 0;
-
-    return;
-
-  }
-
-
-  // ==============================
-  // PLAY
-  // ==============================
-
-  setupAudio();
-
-
-  if (
-    audioContext.state ===
-    "suspended"
-  ) {
-
-    await audioContext.resume();
-
-  }
-
-
-  await music.play();
-
-
-  isPlaying = true;
-
-  btn.textContent =
-    "Pause Music";
-
-
-  /*
-   * Particle yang sebelumnya sudah
-   * habis akan otomatis mulai muncul
-   * lagi dari bawah ketika keluar
-   * dari layar berikutnya.
-   */
-
-  /*
-   * Tetapi particle yang sudah
-   * inactive perlu dihidupkan lagi.
-   */
-
-  particles.forEach(
-    particle => {
-
-      if (!particle.active) {
-
-        particle.reset();
-
-      }
-
-    }
+  requestAnimationFrame(
+    animateMeteors
   );
 
 }
 
 
-// ==============================
-// MULAI ANIMASI
-// ==============================
+/* =========================================
+   START METEOR
+========================================= */
 
-animate();
+animateMeteors();
 
 </script>
+
 
 </body>
 </html>
