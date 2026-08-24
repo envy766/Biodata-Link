@@ -254,7 +254,7 @@ p {
 
   color: #f6d77a;
 
-  font-size: 16px;
+  font-size: 11px;
 
   font-weight: bold;
 
@@ -439,7 +439,6 @@ footer {
 >
   Play Music
 </button>
-
 
 <audio id="bgMusic" loop>
 
@@ -1785,11 +1784,8 @@ async function toggleMusic() {
     isPlaying =
       false;
 
-
     btn.textContent =
       "Play Music";
-
-
     /*
      * PENTING:
      *
@@ -1837,8 +1833,6 @@ async function toggleMusic() {
 
     btn.textContent =
       "Pause Music";
-
-
     startLanterns();
 
   }
@@ -1867,6 +1861,74 @@ async function toggleMusic() {
  */
 
 animate();
+
+
+// =========================================================
+// AUTO PLAY DARI HALAMAN PEMBUKA
+// =========================================================
+
+window.addEventListener("load", async () => {
+
+  const shouldAutoPlay =
+    sessionStorage.getItem("autoPlayMusic");
+
+  if (shouldAutoPlay !== "true") {
+    return;
+  }
+
+
+  try {
+
+    setupAudio();
+
+
+    if (
+      audioContext.state === "suspended"
+    ) {
+
+      await audioContext.resume();
+
+    }
+
+
+    await music.play();
+
+
+    isPlaying =
+      true;
+
+    btn.textContent =
+      "Pause Music";
+
+    /*
+     * Mulai sistem lampion
+     * setelah musik berhasil bermain.
+     */
+
+    startLanterns();
+
+
+    /*
+     * Hapus tanda setelah
+     * berhasil memulai musik.
+     */
+
+    sessionStorage.removeItem(
+      "autoPlayMusic"
+    );
+
+  }
+
+  catch (error) {
+
+    console.log(
+      "Autoplay diblokir browser:",
+      error
+    );
+
+  }
+
+});
 
 </script>
 

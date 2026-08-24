@@ -107,7 +107,7 @@
     background: transparent;
     border: 2px solid #ff0057;
     color: #ff0057;
-    font-size: 16px;
+    font-size: 11px;
     font-weight: bold;
     border-radius: 30px;
     cursor: pointer;
@@ -632,9 +632,8 @@ async function toggleMusic() {
 
     isPlaying = false;
 
-    btn.textContent =
+   btn.textContent =
       "Play Music";
-
     /*
      * JANGAN:
      *
@@ -679,8 +678,6 @@ async function toggleMusic() {
 
   btn.textContent =
     "Pause Music";
-
-
   /*
    * Particle yang sebelumnya sudah
    * habis akan otomatis mulai muncul
@@ -713,6 +710,83 @@ async function toggleMusic() {
 // ==============================
 
 animate();
+
+
+// ==============================
+// AUTO PLAY DARI HALAMAN PEMBUKA
+// ==============================
+
+window.addEventListener("load", async () => {
+
+  const shouldAutoPlay =
+    sessionStorage.getItem("autoPlayMusic");
+
+  if (shouldAutoPlay !== "true") {
+    return;
+  }
+
+
+  try {
+
+    setupAudio();
+
+
+    if (
+      audioContext.state === "suspended"
+    ) {
+
+      await audioContext.resume();
+
+    }
+
+
+    await music.play();
+
+
+    isPlaying = true;
+
+
+    btn.textContent =
+      "Pause Music";
+    /*
+     * Aktifkan kembali particle
+     * jika sebelumnya inactive.
+     */
+
+    particles.forEach(
+      particle => {
+
+        if (!particle.active) {
+
+          particle.reset();
+
+        }
+
+      }
+    );
+
+
+    /*
+     * Hapus tanda setelah
+     * berhasil memulai musik.
+     */
+
+    sessionStorage.removeItem(
+      "autoPlayMusic"
+    );
+
+  }
+
+  catch (error) {
+
+    console.log(
+      "Autoplay diblokir browser:",
+      error
+    );
+
+  }
+
+});
 
 </script>
 
