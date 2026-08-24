@@ -10,7 +10,7 @@
   content="width=device-width, initial-scale=1.0"
 >
 
-<title> Dashboard Choice </title>
+<title>Choose Your Room</title>
 
 
 <style>
@@ -22,7 +22,6 @@
 * {
   box-sizing: border-box;
 }
-
 
 html,
 body {
@@ -249,8 +248,6 @@ body::before {
 }
 
 
-/* Horizontal light */
-
 .star.sparkle::before {
 
   content: "";
@@ -276,8 +273,6 @@ body::before {
 
 }
 
-
-/* Vertical light */
 
 .star.sparkle::after {
 
@@ -322,6 +317,27 @@ body::before {
   pointer-events: none;
 
   z-index: 2;
+
+}
+
+
+/* =========================================
+   GOLDEN DUST CANVAS
+========================================= */
+
+#goldDustCanvas {
+
+  position: fixed;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  pointer-events: none;
+
+  z-index: 4;
 
 }
 
@@ -699,7 +715,7 @@ body::before {
 
 
 /* =========================================
-   UKIRAN ATAS / BAWAH
+   FRAME DECORATION
 ========================================= */
 
 .frame-decoration {
@@ -725,8 +741,6 @@ body::before {
 }
 
 
-/* ATAS */
-
 .frame-top {
 
   top: -9px;
@@ -738,8 +752,6 @@ body::before {
 
 }
 
-
-/* BAWAH */
 
 .frame-bottom {
 
@@ -754,8 +766,6 @@ body::before {
 }
 
 
-/* KIRI */
-
 .frame-left {
 
   left: -9px;
@@ -768,8 +778,6 @@ body::before {
 
 }
 
-
-/* KANAN */
 
 .frame-right {
 
@@ -858,7 +866,7 @@ body::before {
 
 
 /* =========================================
-   FRAME SUBTLE FLOAT
+   FRAME FLOAT
 ========================================= */
 
 .photo-frame {
@@ -1152,10 +1160,6 @@ footer {
 }
 
 
-/* =========================================
-   MOBILE ADJUSTMENT
-========================================= */
-
 @media (max-height: 650px) {
 
   .top-section {
@@ -1177,10 +1181,6 @@ footer {
     margin-top: 18px;
 
   }
-
-
-  /* FOTO DIPERKECIL DAN DINAIKKAN
-     PADA LAYAR PENDEK */
 
   .photo-frame {
 
@@ -1222,13 +1222,11 @@ footer {
 
   }
 
-
   .menu-section {
 
     top: 52%;
 
   }
-
 
   .theme-btn {
 
@@ -1240,10 +1238,6 @@ footer {
 
 }
 
-
-/* =========================================
-   VERY SHORT SCREEN
-========================================= */
 
 @media (max-height: 560px) {
 
@@ -1277,124 +1271,29 @@ footer {
      STARS
 ========================================= -->
 
-<div
-  class="star"
-  style="
-    top:7%;
-    left:10%;
-    animation-delay:.3s;
-  ">
-</div>
+<div class="star" style="top:7%;left:10%;animation-delay:.3s;"></div>
 
+<div class="star" style="top:14%;left:80%;animation-delay:1s;"></div>
 
-<div
-  class="star"
-  style="
-    top:14%;
-    left:80%;
-    animation-delay:1s;
-  ">
-</div>
+<div class="star big" style="top:24%;left:24%;animation-delay:1.5s;"></div>
 
+<div class="star sparkle" style="top:31%;left:88%;animation-delay:.8s;"></div>
 
-<div
-  class="star big"
-  style="
-    top:24%;
-    left:24%;
-    animation-delay:1.5s;
-  ">
-</div>
+<div class="star big" style="top:43%;left:8%;animation-delay:1.8s;"></div>
 
+<div class="star" style="top:52%;left:84%;animation-delay:.9s;"></div>
 
-<div
-  class="star sparkle"
-  style="
-    top:31%;
-    left:88%;
-    animation-delay:.8s;
-  ">
-</div>
+<div class="star sparkle" style="top:64%;left:18%;animation-delay:1.3s;"></div>
 
+<div class="star big" style="top:73%;left:73%;animation-delay:.4s;"></div>
 
-<div
-  class="star big"
-  style="
-    top:43%;
-    left:8%;
-    animation-delay:1.8s;
-  ">
-</div>
+<div class="star" style="top:84%;left:43%;animation-delay:1.7s;"></div>
 
+<div class="star sparkle" style="top:91%;left:92%;animation-delay:.8s;"></div>
 
-<div
-  class="star"
-  style="
-    top:52%;
-    left:84%;
-    animation-delay:.9s;
-  ">
-</div>
+<div class="star" style="top:38%;left:56%;animation-delay:2s;"></div>
 
-
-<div
-  class="star sparkle"
-  style="
-    top:64%;
-    left:18%;
-    animation-delay:1.3s;
-  ">
-</div>
-
-
-<div
-  class="star big"
-  style="
-    top:73%;
-    left:73%;
-    animation-delay:.4s;
-  ">
-</div>
-
-
-<div
-  class="star"
-  style="
-    top:84%;
-    left:43%;
-    animation-delay:1.7s;
-  ">
-</div>
-
-
-<div
-  class="star sparkle"
-  style="
-    top:91%;
-    left:92%;
-    animation-delay:.8s;
-  ">
-</div>
-
-
-<div
-  class="star"
-  style="
-    top:38%;
-    left:56%;
-    animation-delay:2s;
-  ">
-</div>
-
-
-<div
-  class="star"
-  style="
-    top:78%;
-    left:5%;
-    animation-delay:1.2s;
-  ">
-</div>
+<div class="star" style="top:78%;left:5%;animation-delay:1.2s;"></div>
 
 
 <!-- =========================================
@@ -1402,6 +1301,13 @@ footer {
 ========================================= -->
 
 <canvas id="meteorCanvas"></canvas>
+
+
+<!-- =========================================
+     GOLDEN DUST CANVAS
+========================================= -->
+
+<canvas id="goldDustCanvas"></canvas>
 
 
 <!-- =========================================
@@ -1480,8 +1386,6 @@ footer {
     </div>
 
 
-    <!-- ORNAMEN -->
-
     <div
       class="frame-decoration frame-top"
     >
@@ -1509,8 +1413,6 @@ footer {
       ❧
     </div>
 
-
-    <!-- TITIK UKIRAN -->
 
     <div
       class="frame-dot dot-1"
@@ -1549,28 +1451,29 @@ footer {
     </div>
 
 
-<a
-  href="Themes/lightneon.html"
-  class="theme-btn light-btn"
-  onclick="sessionStorage.setItem('autoPlayMusic', 'true')"
->
-  ✦ LIGHT ✦ 
-</a>
+    <a
+      href="Themes/lightneon.html"
+      class="theme-btn light-btn"
+      onclick="sessionStorage.setItem('autoPlayMusic', 'true')"
+    >
+      ✦ LIGHT ✦
+    </a>
 
 
-<a
-  href="Themes/nightgold.html"
-  class="theme-btn gold-btn"
-  onclick="sessionStorage.setItem('autoPlayMusic', 'true')"
->
-  ✦ NIGHT ✦
-</a>
+    <a
+      href="Themes/nightgold.html"
+      class="theme-btn gold-btn"
+      onclick="sessionStorage.setItem('autoPlayMusic', 'true')"
+    >
+      ✦ NIGHT ✦
+    </a>
 
 
     <footer>
 
       Copyright © August 2026
       𝕬 𝖋 𝖗 𝖎 𝖟 𝖆 𝖑<br>
+
       All Rights Reserved
 
     </footer>
@@ -1582,9 +1485,9 @@ footer {
 </div>
 
 
-<!-- =========================================
+<!-- =========================================================
      NATURAL METEOR SYSTEM
-========================================= -->
+========================================================= -->
 
 <script>
 
@@ -1603,10 +1506,6 @@ let meteorWidth =
 let meteorHeight =
   window.innerHeight;
 
-
-/* =========================================
-   RESIZE CANVAS
-========================================= */
 
 function resizeMeteorCanvas() {
 
@@ -1634,10 +1533,6 @@ window.addEventListener(
 resizeMeteorCanvas();
 
 
-/* =========================================
-   NATURAL METEOR
-========================================= */
-
 class NaturalMeteor {
 
   constructor() {
@@ -1649,13 +1544,6 @@ class NaturalMeteor {
 
   reset(firstSpawn = false) {
 
-    /*
-     * Meteor selalu muncul
-     * dari bagian ATAS layar.
-     *
-     * Tetapi titik X berbeda-beda.
-     */
-
     this.x =
       Math.random() *
       meteorWidth;
@@ -1666,20 +1554,9 @@ class NaturalMeteor {
       250;
 
 
-    /*
-     * SEMUA METEOR
-     * MENGGUNAKAN ARAH YANG SAMA.
-     *
-     * Atas → bawah agak ke kiri.
-     */
-
     const angle =
       Math.PI / 2 + 0.35;
 
-
-    /*
-     * Kecepatan meteor.
-     */
 
     this.speed =
       5 +
@@ -1696,37 +1573,20 @@ class NaturalMeteor {
       this.speed;
 
 
-    /*
-     * UKURAN KECIL.
-     */
-
     this.size =
       1.1 +
       Math.random() * 1.2;
 
-
-    /*
-     * EKOR PENDEK.
-     */
 
     this.tail =
       45 +
       Math.random() * 40;
 
 
-    /*
-     * Transparansi.
-     */
-
     this.alpha =
       0.55 +
       Math.random() * 0.35;
 
-
-    /*
-     * Delay agar meteor
-     * tidak muncul bersamaan.
-     */
 
     this.delay =
       firstSpawn
@@ -1735,10 +1595,6 @@ class NaturalMeteor {
 
   }
 
-
-  /* =======================================
-     UPDATE
-  ======================================== */
 
   update() {
 
@@ -1754,16 +1610,9 @@ class NaturalMeteor {
     this.x +=
       this.vx;
 
-
     this.y +=
       this.vy;
 
-
-    /*
-     * Jika meteor keluar layar,
-     * buat meteor baru dari atas
-     * dengan titik berbeda.
-     */
 
     if (
 
@@ -1785,19 +1634,11 @@ class NaturalMeteor {
   }
 
 
-  /* =======================================
-     DRAW
-  ======================================== */
-
   draw() {
 
     if (this.delay > 0)
       return;
 
-
-    /*
-     * Panjang arah gerakan.
-     */
 
     const length =
       Math.sqrt(
@@ -1814,10 +1655,6 @@ class NaturalMeteor {
       this.vy / length;
 
 
-    /*
-     * EKOR DI BELAKANG KEPALA.
-     */
-
     const tailX =
       this.x -
       dirX *
@@ -1829,13 +1666,6 @@ class NaturalMeteor {
       dirY *
       this.tail;
 
-
-    /*
-     * GRADIENT EKOR.
-     *
-     * Jauh = transparan.
-     * Dekat kepala = terang.
-     */
 
     const gradient =
       meteorCtx.createLinearGradient(
@@ -1870,61 +1700,42 @@ class NaturalMeteor {
     );
 
 
-    /*
-     * GAMBAR EKOR.
-     */
-
     meteorCtx.save();
-
 
     meteorCtx.globalAlpha =
       this.alpha;
 
-
     meteorCtx.beginPath();
-
 
     meteorCtx.moveTo(
       tailX,
       tailY
     );
 
-
     meteorCtx.lineTo(
       this.x,
       this.y
     );
 
-
     meteorCtx.lineWidth =
       this.size * 1.4;
-
 
     meteorCtx.lineCap =
       "round";
 
-
     meteorCtx.strokeStyle =
       gradient;
-
 
     meteorCtx.shadowColor =
       "#ffffff";
 
-
     meteorCtx.shadowBlur =
       5;
 
-
     meteorCtx.stroke();
-
 
     meteorCtx.restore();
 
-
-    /*
-     * HALO KEPALA.
-     */
 
     const glow =
       meteorCtx.createRadialGradient(
@@ -1970,16 +1781,10 @@ class NaturalMeteor {
     meteorCtx.fillStyle =
       glow;
 
-
     meteorCtx.fill();
 
 
-    /*
-     * KEPALA METEOR.
-     */
-
     meteorCtx.save();
-
 
     meteorCtx.beginPath();
 
@@ -1996,17 +1801,13 @@ class NaturalMeteor {
     meteorCtx.fillStyle =
       "#ffffff";
 
-
     meteorCtx.shadowColor =
       "#ffffff";
-
 
     meteorCtx.shadowBlur =
       7;
 
-
     meteorCtx.fill();
-
 
     meteorCtx.restore();
 
@@ -2014,10 +1815,6 @@ class NaturalMeteor {
 
 }
 
-
-/* =========================================
-   JUMLAH METEOR
-========================================= */
 
 for (
   let i = 0;
@@ -2031,10 +1828,6 @@ for (
 
 }
 
-
-/* =========================================
-   METEOR ANIMATION
-========================================= */
 
 function animateMeteors() {
 
@@ -2064,11 +1857,559 @@ function animateMeteors() {
 }
 
 
-/* =========================================
-   START METEOR
-========================================= */
-
 animateMeteors();
+
+</script>
+
+
+<!-- =========================================================
+     GOLDEN DUST / GOLDEN SMOKE
+========================================================= -->
+
+<script>
+
+const goldCanvas =
+  document.getElementById("goldDustCanvas");
+
+const goldCtx =
+  goldCanvas.getContext("2d");
+
+
+let goldParticles = [];
+
+
+/* =========================================================
+   CANVAS RESIZE
+========================================================= */
+
+function resizeGoldCanvas() {
+
+  const dpr =
+    Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
+
+
+  goldCanvas.width =
+    window.innerWidth * dpr;
+
+  goldCanvas.height =
+    window.innerHeight * dpr;
+
+
+  goldCanvas.style.width =
+    window.innerWidth + "px";
+
+  goldCanvas.style.height =
+    window.innerHeight + "px";
+
+
+  goldCtx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeGoldCanvas
+);
+
+
+resizeGoldCanvas();
+
+
+/* =========================================================
+   GOLD PARTICLE
+========================================================= */
+
+class GoldParticle {
+
+  constructor() {
+
+    this.reset(true);
+
+  }
+
+
+  reset(first = false) {
+
+    /*
+     * Ambil posisi foto secara otomatis.
+     */
+
+    const frame =
+      document.querySelector(
+        ".photo-frame"
+      );
+
+
+    if (!frame)
+      return;
+
+
+    const rect =
+      frame.getBoundingClientRect();
+
+
+    /*
+     * Pusat frame foto.
+     */
+
+    this.centerX =
+      rect.left +
+      rect.width / 2;
+
+
+    this.centerY =
+      rect.top +
+      rect.height / 2;
+
+
+    /*
+     * Radius area partikel.
+     *
+     * Dibuat sedikit lebih besar
+     * daripada frame.
+     */
+
+    const radiusX =
+      rect.width / 2 +
+      15 +
+      Math.random() * 55;
+
+
+    const radiusY =
+      rect.height / 2 +
+      15 +
+      Math.random() * 55;
+
+
+    const angle =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    this.x =
+      this.centerX +
+      Math.cos(angle) *
+      radiusX;
+
+
+    this.y =
+      this.centerY +
+      Math.sin(angle) *
+      radiusY;
+
+
+    /*
+     * Gerakan ke atas.
+     */
+
+    this.speed =
+      0.20 +
+      Math.random() * 0.55;
+
+
+    /*
+     * Gerakan asap ke kiri/kanan.
+     */
+
+    this.drift =
+      (Math.random() - 0.5) *
+      0.30;
+
+
+    this.phase =
+      Math.random() *
+      Math.PI *
+      2;
+
+
+    this.phaseSpeed =
+      0.012 +
+      Math.random() * 0.025;
+
+
+    /*
+     * Ukuran partikel.
+     */
+
+    this.size =
+      0.5 +
+      Math.random() * 1.5;
+
+
+    /*
+     * Cahaya.
+     */
+
+    this.glow =
+      4 +
+      Math.random() * 8;
+
+
+    /*
+     * Transparansi.
+     */
+
+    this.alpha =
+      0.15 +
+      Math.random() * 0.40;
+
+
+    /*
+     * Umur partikel.
+     */
+
+    this.life = 0;
+
+
+    this.maxLife =
+      180 +
+      Math.random() * 220;
+
+
+    /*
+     * Delay awal.
+     */
+
+    this.delay =
+      first
+      ? Math.random() * 150
+      : 0;
+
+
+    this.currentAlpha =
+      0;
+
+  }
+
+
+  /* =======================================================
+     UPDATE
+  ======================================================= */
+
+  update() {
+
+    if (this.delay > 0) {
+
+      this.delay--;
+
+      return;
+
+    }
+
+
+    this.life++;
+
+
+    /*
+     * Terbang ke atas.
+     */
+
+    this.y -=
+      this.speed;
+
+
+    /*
+     * Gerakan seperti asap.
+     */
+
+    this.phase +=
+      this.phaseSpeed;
+
+
+    this.x +=
+      this.drift +
+      Math.sin(
+        this.phase
+      ) * 0.22;
+
+
+    /*
+     * Fade in.
+     */
+
+    let fade =
+      1;
+
+
+    if (
+      this.life < 45
+    ) {
+
+      fade =
+        this.life / 45;
+
+    }
+
+
+    /*
+     * Fade out.
+     */
+
+    if (
+      this.life >
+      this.maxLife - 60
+    ) {
+
+      fade =
+        (
+          this.maxLife -
+          this.life
+        ) / 60;
+
+    }
+
+
+    this.currentAlpha =
+      this.alpha *
+      Math.max(
+        0,
+        Math.min(
+          1,
+          fade
+        )
+      );
+
+
+    /*
+     * Jika sudah selesai,
+     * buat partikel baru.
+     */
+
+    if (
+      this.life >=
+      this.maxLife
+    ) {
+
+      this.reset();
+
+    }
+
+  }
+
+
+  /* =======================================================
+     DRAW
+  ======================================================= */
+
+  draw() {
+
+    if (
+      this.delay > 0 ||
+      this.currentAlpha <= 0
+    )
+      return;
+
+
+    goldCtx.save();
+
+
+    goldCtx.globalAlpha =
+      this.currentAlpha;
+
+
+    /*
+     * Glow emas.
+     */
+
+    goldCtx.shadowColor =
+      "#f6d77a";
+
+
+    goldCtx.shadowBlur =
+      this.glow;
+
+
+    /*
+     * Halo lembut.
+     */
+
+    const radius =
+      this.size * 4;
+
+
+    const gradient =
+      goldCtx.createRadialGradient(
+        this.x,
+        this.y,
+        0,
+        this.x,
+        this.y,
+        radius
+      );
+
+
+    gradient.addColorStop(
+      0,
+      "rgba(255,248,190,0.95)"
+    );
+
+
+    gradient.addColorStop(
+      0.25,
+      "rgba(255,220,120,0.65)"
+    );
+
+
+    gradient.addColorStop(
+      0.55,
+      "rgba(244,201,93,0.25)"
+    );
+
+
+    gradient.addColorStop(
+      1,
+      "rgba(215,183,91,0)"
+    );
+
+
+    goldCtx.fillStyle =
+      gradient;
+
+
+    goldCtx.beginPath();
+
+
+    goldCtx.arc(
+      this.x,
+      this.y,
+      radius,
+      0,
+      Math.PI * 2
+    );
+
+
+    goldCtx.fill();
+
+
+    /*
+     * Inti debu.
+     */
+
+    goldCtx.fillStyle =
+      "#ffe8a0";
+
+
+    goldCtx.shadowBlur =
+      6;
+
+
+    goldCtx.beginPath();
+
+
+    goldCtx.arc(
+      this.x,
+      this.y,
+      this.size * 0.7,
+      0,
+      Math.PI * 2
+    );
+
+
+    goldCtx.fill();
+
+
+    goldCtx.restore();
+
+  }
+
+}
+
+
+/* =========================================================
+   CREATE PARTICLES
+========================================================= */
+
+function createGoldParticles() {
+
+  goldParticles = [];
+
+
+  /*
+   * Jumlah partikel.
+   */
+
+  for (
+    let i = 0;
+    i < 75;
+    i++
+  ) {
+
+    goldParticles.push(
+      new GoldParticle()
+    );
+
+  }
+
+}
+
+
+createGoldParticles();
+
+
+/* =========================================================
+   UPDATE POSITION SAAT RESIZE
+========================================================= */
+
+window.addEventListener(
+  "resize",
+  () => {
+
+    /*
+     * Buat ulang partikel
+     * agar mengikuti posisi foto.
+     */
+
+    createGoldParticles();
+
+  }
+);
+
+
+/* =========================================================
+   GOLD DUST ANIMATION
+========================================================= */
+
+function animateGoldDust() {
+
+  goldCtx.clearRect(
+    0,
+    0,
+    window.innerWidth,
+    window.innerHeight
+  );
+
+
+  goldParticles.forEach(
+    particle => {
+
+      particle.update();
+
+      particle.draw();
+
+    }
+  );
+
+
+  requestAnimationFrame(
+    animateGoldDust
+  );
+
+}
+
+
+animateGoldDust();
 
 </script>
 
