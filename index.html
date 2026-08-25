@@ -611,28 +611,28 @@ body::before {
   z-index: 6;
 
   animation:
-    frameFloat 5s ease-in-out infinite;
+  frameFloat 5s ease-in-out infinite;
 
 }
-
 
 @keyframes frameFloat {
 
   0%,
   100% {
 
-    margin-top: 28px;
+    transform:
+      translateY(0);
 
   }
 
   50% {
 
-    margin-top: 24px;
+    transform:
+      translateY(-4px);
 
   }
 
 }
-
 
 /* =========================================
    OUTER ORNAMENT RING
@@ -898,8 +898,11 @@ body::before {
 
   margin-top: 28px;
 
-}
+  transform: none;
 
+  animation: none;
+
+}
 
 /* =========================================
    LYRICS DISPLAY
@@ -1507,7 +1510,6 @@ footer {
   }
 
 }
-
 
 </style>
 
