@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>LRC Lyrics Recorder</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+
+  margin: 0;
+  padding: 0;
+
+  min-height: 100%;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      #19150b,
+      #080705 55%,
+      #000000
+    );
+
+  color: #e7d99e;
+
+}
+
+
+body {
+
+  padding:
+    20px 15px 40px;
+
+}
+
+
+.container {
+
+  width: 100%;
+
+  max-width: 500px;
+
+  margin: auto;
+
+}
+
+
+h1 {
+
+  text-align: center;
+
+  font-size: 23px;
+
+  letter-spacing: 2px;
+
+  margin:
+    10px 0 20px;
+
+  color: #f2d879;
+
+  text-shadow:
+    0 0 8px #d7c890,
+    0 0 20px rgba(215,200,144,.5);
+
+}
+
+
+.song-buttons {
+
+  display: flex;
+
+  gap: 8px;
+
+  margin-bottom: 15px;
+
+}
+
+
+.song-buttons button {
+
+  flex: 1;
+
+  padding: 12px 5px;
+
+  border-radius: 10px;
+
+  border:
+    1px solid #b99545;
+
+  background:
+    rgba(215,200,144,.06);
+
+  color: #e7d99e;
+
+  font-weight: bold;
+
+}
+
+
+.song-buttons button.active {
+
+  background:
+    rgba(215,200,144,.22);
+
+  box-shadow:
+    0 0 15px rgba(215,200,144,.35);
+
+}
+
+
+.audio-box {
+
+  padding: 15px;
+
+  border:
+    1px solid #6f5727;
+
+  border-radius: 15px;
+
+  background:
+    rgba(255,255,255,.03);
+
+}
+
+
+audio {
+
+  width: 100%;
+
+}
+
+
+.time {
+
+  text-align: center;
+
+  margin:
+    12px 0;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  color: #ffe8a0;
+
+}
+
+
+.controls {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 10px;
+
+}
+
+
+button {
+
+  cursor: pointer;
+
+}
+
+
+.control-btn {
+
+  padding: 13px;
+
+  border-radius: 10px;
+
+  border:
+    1px solid #b99545;
+
+  background:
+    rgba(215,200,144,.08);
+
+  color: #f4df91;
+
+  font-weight: bold;
+
+}
+
+
+.mark-btn {
+
+  grid-column:
+    1 / -1;
+
+  padding: 18px;
+
+  border-radius: 12px;
+
+  border:
+    2px solid #e4c56f;
+
+  background:
+    rgba(215,200,144,.12);
+
+  color: #ffe9a3;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  box-shadow:
+    0 0 12px rgba(215,200,144,.25);
+
+}
+
+
+.mark-btn:active {
+
+  transform:
+    scale(.97);
+
+}
+
+
+.lyrics-box {
+
+  margin-top: 20px;
+
+  padding: 12px;
+
+  border:
+    1px solid #4f3b19;
+
+  border-radius: 12px;
+
+  max-height: 420px;
+
+  overflow-y: auto;
+
+}
+
+
+.lyric-row {
+
+  display: flex;
+
+  gap: 8px;
+
+  align-items: center;
+
+  padding: 8px;
+
+  border-bottom:
+    1px solid rgba(215,200,144,.08);
+
+}
+
+
+.lyric-row.marked {
+
+  background:
+    rgba(215,200,144,.10);
+
+}
+
+
+.lyric-time {
+
+  width: 75px;
+
+  flex-shrink: 0;
+
+  font-size: 11px;
+
+  color: #c7ae68;
+
+}
+
+
+.lyric-text {
+
+  flex: 1;
+
+  font-size: 13px;
+
+  color: #ddd0a0;
+
+}
+
+
+.lyric-row.current {
+
+  border-left:
+    3px solid #f2d879;
+
+  background:
+    rgba(242,216,121,.12);
+
+}
+
+
+.bottom-controls {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 15px;
+
+}
+
+
+.save-btn {
+
+  padding: 15px;
+
+  border-radius: 11px;
+
+  border:
+    2px solid #d7b75b;
+
+  background:
+    rgba(215,183,91,.14);
+
+  color: #ffe7a0;
+
+  font-weight: bold;
+
+}
+
+
+.undo-btn {
+
+  padding: 15px;
+
+  border-radius: 11px;
+
+  border:
+    1px solid #80642d;
+
+  background:
+    rgba(255,255,255,.04);
+
+  color: #d7c890;
+
+}
+
+
+.status {
+
+  text-align: center;
+
+  min-height: 22px;
+
+  margin-top: 12px;
+
+  font-size: 12px;
+
+  color: #c9bb8a;
+
+}
+
+
+.help {
+
+  margin-top: 20px;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  background:
+    rgba(215,200,144,.05);
+
+  color: #aaa27e;
+
+  font-size: 11px;
+
+  line-height: 1.6;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>♫ LRC LYRICS RECORDER</h1>
+
+
+<div class="song-buttons">
+
+  <button
+    id="song1Btn"
+    onclick="selectSong(1)"
+  >
+    SONG 1
+  </button>
+
+  <button
+    id="song2Btn"
+    onclick="selectSong(2)"
+  >
+    SONG 2
+  </button>
+
+  <button
+    id="song3Btn"
+    onclick="selectSong(3)"
+  >
+    SONG 3
+  </button>
+
+</div>
+
+
+<div class="audio-box">
+
+
+  <audio
+    id="audio"
+    controls
+    preload="metadata"
+  ></audio>
+
+
+  <div
+    class="time"
+    id="currentTime"
+  >
+    00:00.000
+  </div>
+
+
+  <div class="controls">
+
+
+    <button
+      class="control-btn"
+      onclick="restartSong()"
+    >
+      ↺ RESTART
+    </button>
+
+
+    <button
+      class="control-btn"
+      onclick="togglePlay()"
+    >
+      ▶ / ⏸ PLAY
+    </button>
+
+
+    <button
+      class="mark-btn"
+      onclick="markCurrentLine()"
+    >
+      ⏱ TANDAI BARIS
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+<div
+  class="lyrics-box"
+  id="lyricsBox"
+></div>
+
+
+<div class="bottom-controls">
+
+
+  <button
+    class="undo-btn"
+    onclick="undoLast()"
+  >
+    ↩ UNDO
+  </button>
+
+
+  <button
+    class="save-btn"
+    onclick="saveLRC()"
+  >
+    💾 SAVE LRC
+  </button>
+
+
+</div>
+
+
+<div
+  class="status"
+  id="status"
+></div>
+
+
+<div class="help">
+
+  <b>Cara menggunakan:</b><br><br>
+
+  1. Pilih SONG 1 / SONG 2 / SONG 3.<br>
+  2. Tekan RESTART.<br>
+  3. Putar lagu.<br>
+  4. Saat sebuah baris lirik mulai dinyanyikan,
+     tekan <b>TANDAI BARIS</b>.<br>
+  5. Lanjutkan sampai semua baris selesai.<br>
+  6. Tekan <b>SAVE LRC</b>.<br><br>
+
+  Timestamp akan diambil langsung dari
+  posisi audio sehingga tidak perlu mengetik
+  waktu secara manual.
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   DATA LIRIK
+========================================================= */
+
+
+const songs = {
+
+
+  1: {
+
+    audio:
+      "lyricstime/song1.mp3",
+
+    filename:
+      "song1.lrc",
+
+    lyrics: [
+
+      "Mengapa tak kau katakan",
+      "Sejujurnya tentang hatimu",
+      "Kau bohongi hatiku ini",
+      "Hanya untuk membalut lukamu",
+      "Kau buat ku menangis pilu",
+      "Dengan caramu melukai",
+      "Mengapa kau beri harapan",
+      "Bila akhirnya kau meninggalkanku",
+
+      "Bila memang kau masih mecintainya",
+      "Ku akan melangkah pergi",
+      "Bila membuatmu bahagia",
+      "Bila hatimu bukanlah untukku",
+      "Pergilah bawa cintamu",
+      "Bersama masa lalumu",
+
+      "Kau bohongi hatiku ini",
+      "Hanya untuk membalut lukamu",
+      "Kau buat ku menangis pilu",
+      "Dengan caramu melukai",
+      "Mengapa kau beri harapan",
+      "Bila akhirnya kau meninggalkanku",
+
+      "Bila memang kau masih mecintainya",
+      "Ku akan melangkah pergi",
+      "Bila membuatmu bahagia",
+      "Bila hatimu bukanlah untukku",
+      "Pergilah bawa cintamu",
+      "Bersama masa lalumu",
+
+      "Bila memang kau masih mecintainya",
+      "Ku akan melangkah pergi",
+      "Bila membuatmu bahagia",
+      "Bila hatimu bukanlah untukku",
+      "Pergilah bawa cintamu",
+      "Bersama masa lalumu oh"
+
+    ]
+
+  },
+
+
+  2: {
+
+    audio:
+      "lyricstime/song2.mp3",
+
+    filename:
+      "song2.lrc",
+
+    lyrics: [
+
+      "Teringat saat bersamamu",
+      "Kau kecup keningku disampingmu",
+      "Kini hanyalah tinggal kenangan",
+      "Saat bersamamu",
+
+      "Ucap janjimu yang takkan pernah",
+      "Untuk pergi meninggalkan aku",
+      "Namun semua hanyalah semu",
+      "Kini kau pergi meninggalkan cinta",
+
+      "Kini tinggal kenangan",
+      "Saat saat kita bersama",
+      "Sungguh sangat ku merindu",
+      "Sentuh peluk manja kamu",
+
+      "Selamat tinggal yang aku cinta",
+      "Semua kisah tentang cinta kita",
+      "Kan ku kenang kau slamanya",
+      "Di dalam hatiku",
+
+      "Ucap janjimu yang takkan pernah",
+      "Untuk pergi meninggalkan aku",
+      "Namun semua hanyalah semu",
+      "Kini kau pergi meninggalkan cinta",
+
+      "Kini tinggal kenangan",
+      "Saat saat kita bersama",
+      "Sungguh sangat ku merindu",
+      "Sentuh peluk manja kamu",
+
+      "Selamat tinggal yang aku cinta",
+      "Semua kisah tentang cinta kita",
+      "Kan ku kenang kau slamanya",
+      "Di dalam hatiku",
+
+      "Kini tinggal kenangan",
+      "Saat saat kita bersama",
+      "Sungguh sangat ku merindu",
+      "Sentuh peluk manja kamu",
+
+      "Selamat tinggal yang aku cinta",
+      "Semua kisah tentang cinta kita",
+      "Kan ku kenang kau slamanya",
+      "Di dalam hatiku"
+
+    ]
+
+  },
+
+
+  3: {
+
+    audio:
+      "lyricstime/song3.mp3",
+
+    filename:
+      "song3.lrc",
+
+    lyrics: [
+
+      "Sakitnya hatiku",
+      "Bila ingat tentangmu",
+      "Saat saat indah bersamamu dulu",
+      "Ku merindukanmu",
+      "Resah hati tanpamu",
+      "Namun kini dirimu bukan lagi milikku",
+
+      "Mudahnya kau berpaling dariku",
+      "Terlantarkan cintaku",
+      "Inikah balasan janji manismu",
+      "Kan setia padaku",
+
+      "Disana kau berdua bahagia",
+      "Disini ku sendiri menahan luka",
+      "Mudahnya engkau membagi cinta",
+      "Setia ku kau balas luka",
+
+      "Sesungguhnya tanpamu aku tak bisa",
+      "Namun apalah daya kau telah mendua",
+      "Biarlah disini ku merawat luka",
+      "Semoga kau selalu bahagia",
+
+      "Oh mudahnya kau berpaling dariku",
+      "Terlantarkan cintaku",
+      "Inikah balasan janji manismu",
+      "Kan setia padaku",
+
+      "Disana kau berdua bahagia",
+      "Disini ku sendiri menahan luka",
+      "Mudahnya engkau membagi cinta",
+      "Setia ku kau balas luka",
+
+      "Sesungguhnya tanpamu aku tak bisa",
+      "Namun apalah daya kau telah mendua",
+      "Biarlah disini ku merawat luka",
+      "Semoga kau selalu bahagia",
+
+      "Disana kau berdua bahagia",
+      "Disini ku sendiri menahan luka",
+      "Mudahnya engkau membagi cinta",
+      "Setia ku kau balas luka",
+
+      "Sesungguhnya tanpamu aku tak bisa",
+      "Namun apalah daya kau telah mendua",
+      "Biarlah disini ku merawat luka",
+      "Semoga kau selalu bahagia"
+
+    ]
+
+  }
+
+};
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+
+const audio =
+  document.getElementById("audio");
+
+
+const currentTime =
+  document.getElementById("currentTime");
+
+
+const lyricsBox =
+  document.getElementById("lyricsBox");
+
+
+const statusBox =
+  document.getElementById("status");
+
+
+let currentSong =
+  1;
+
+
+let currentLine =
+  0;
+
+
+let recorded =
+  [];
+
+
+/* =========================================================
+   SELECT SONG
+========================================================= */
+
+
+function selectSong(number) {
+
+
+  currentSong =
+    number;
+
+
+  currentLine =
+    0;
+
+
+  recorded =
+    [];
+
+
+  audio.pause();
+
+
+  audio.currentTime =
+    0;
+
+
+  audio.src =
+    songs[number].audio;
+
+
+  audio.load();
+
+
+  document
+    .querySelectorAll(".song-buttons button")
+    .forEach(button => {
+
+      button.classList.remove(
+        "active"
+      );
+
+    });
+
+
+  document
+    .getElementById(
+      "song" + number + "Btn"
+    )
+    .classList.add(
+      "active"
+    );
+
+
+  renderLyrics();
+
+
+  setStatus(
+    "Song " +
+    number +
+    " siap direkam."
+  );
+
+}
+
+
+/* =========================================================
+   RENDER LYRICS
+========================================================= */
+
+
+function renderLyrics() {
+
+
+  lyricsBox.innerHTML =
+    "";
+
+
+  songs[currentSong]
+    .lyrics
+    .forEach(
+      (text, index) => {
+
+
+        const row =
+          document.createElement(
+            "div"
+          );
+
+
+        row.className =
+          "lyric-row";
+
+
+        row.id =
+          "line-" +
+          index;
+
+
+        const time =
+          document.createElement(
+            "div"
+          );
+
+
+        time.className =
+          "lyric-time";
+
+
+        time.textContent =
+          "--:--.---";
+
+
+        const lyric =
+          document.createElement(
+            "div"
+          );
+
+
+        lyric.className =
+          "lyric-text";
+
+
+        lyric.textContent =
+          text;
+
+
+        row.appendChild(
+          time
+        );
+
+
+        row.appendChild(
+          lyric
+        );
+
+
+        lyricsBox.appendChild(
+          row
+        );
+
+      }
+    );
+
+}
+
+
+/* =========================================================
+   TIME FORMAT
+========================================================= */
+
+
+function formatTime(seconds) {
+
+
+  const minutes =
+    Math.floor(
+      seconds / 60
+    );
+
+
+  const secs =
+    seconds -
+    minutes * 60;
+
+
+  const secText =
+    secs
+      .toFixed(3)
+      .padStart(
+        6,
+        "0"
+      );
+
+
+  return (
+    String(minutes)
+      .padStart(2, "0")
+    +
+    ":" +
+    secText
+  );
+
+}
+
+
+/* =========================================================
+   LRC TIME FORMAT
+========================================================= */
+
+
+function formatLRC(seconds) {
+
+
+  const minutes =
+    Math.floor(
+      seconds / 60
+    );
+
+
+  const secs =
+    seconds -
+    minutes * 60;
+
+
+  return (
+    "[" +
+    String(minutes)
+      .padStart(2, "0")
+    +
+    ":" +
+    secs
+      .toFixed(3)
+      .padStart(6, "0")
+    +
+    "]"
+  );
+
+}
+
+
+/* =========================================================
+   UPDATE CLOCK
+========================================================= */
+
+
+audio.addEventListener(
+  "timeupdate",
+  () => {
+
+
+    currentTime.textContent =
+      formatTime(
+        audio.currentTime
+      );
+
+
+  }
+);
+
+
+/* =========================================================
+   MARK CURRENT LINE
+========================================================= */
+
+
+function markCurrentLine() {
+
+
+  if (
+    currentLine >=
+    songs[currentSong].lyrics.length
+  ) {
+
+    setStatus(
+      "Semua baris sudah direkam."
+    );
+
+    return;
+
+  }
+
+
+  const time =
+    audio.currentTime;
+
+
+  const text =
+    songs[currentSong]
+      .lyrics[currentLine];
+
+
+  recorded.push({
+
+    time:
+      time,
+
+    text:
+      text,
+
+    line:
+      currentLine
+
+  });
+
+
+  const row =
+    document.getElementById(
+      "line-" +
+      currentLine
+    );
+
+
+  if (row) {
+
+
+    row.classList.add(
+      "marked"
+    );
+
+
+    row.classList.remove(
+      "current"
+    );
+
+
+    row.querySelector(
+      ".lyric-time"
+    ).textContent =
+      formatTime(time);
+
+
+  }
+
+
+  currentLine++;
+
+
+  const next =
+    document.getElementById(
+      "line-" +
+      currentLine
+    );
+
+
+  if (next) {
+
+
+    next.classList.add(
+      "current"
+    );
+
+
+    next.scrollIntoView({
+
+      behavior:
+        "smooth",
+
+      block:
+        "center"
+
+    });
+
+  }
+
+
+  setStatus(
+
+    "Tersimpan: " +
+    formatTime(time) +
+    " — " +
+    text
+
+  );
+
+}
+
+
+/* =========================================================
+   UNDO
+========================================================= */
+
+
+function undoLast() {
+
+
+  if (
+    recorded.length === 0
+  ) {
+
+    setStatus(
+      "Belum ada timestamp."
+    );
+
+    return;
+
+  }
+
+
+  const last =
+    recorded.pop();
+
+
+  currentLine =
+    last.line;
+
+
+  const row =
+    document.getElementById(
+      "line-" +
+      last.line
+    );
+
+
+  if (row) {
+
+
+    row.classList.remove(
+      "marked"
+    );
+
+
+    row.querySelector(
+      ".lyric-time"
+    ).textContent =
+      "--:--.---";
+
+  }
+
+
+  const next =
+    document.getElementById(
+      "line-" +
+      currentLine
+    );
+
+
+  if (next) {
+
+    next.classList.add(
+      "current"
+    );
+
+  }
+
+
+  setStatus(
+    "Timestamp terakhir dibatalkan."
+  );
+
+}
+
+
+/* =========================================================
+   PLAY / PAUSE
+========================================================= */
+
+
+function togglePlay() {
+
+
+  if (
+    audio.paused
+  ) {
+
+    audio.play();
+
+  } else {
+
+    audio.pause();
+
+  }
+
+}
+
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+
+function restartSong() {
+
+
+  audio.pause();
+
+
+  audio.currentTime =
+    0;
+
+
+  currentLine =
+    0;
+
+
+  recorded =
+    [];
+
+
+  renderLyrics();
+
+
+  setStatus(
+    "Recording direset. Siap mulai dari awal."
+  );
+
+}
+
+
+/* =========================================================
+   SAVE LRC
+========================================================= */
+
+
+function saveLRC() {
+
+
+  if (
+    recorded.length === 0
+  ) {
+
+    setStatus(
+      "Belum ada timestamp untuk disimpan."
+    );
+
+    return;
+
+  }
+
+
+  const lines =
+    recorded
+      .slice()
+      .sort(
+        (a, b) =>
+          a.time -
+          b.time
+      )
+      .map(
+        item =>
+          formatLRC(
+            item.time
+          ) +
+          item.text
+      );
+
+
+  const lrc =
+    lines.join(
+      "\n"
+    );
+
+
+  const blob =
+    new Blob(
+      [lrc],
+      {
+        type:
+          "text/plain;charset=utf-8"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+
+  link.href =
+    url;
+
+
+  link.download =
+    songs[currentSong].filename;
+
+
+  document.body.appendChild(
+    link
+  );
+
+
+  link.click();
+
+
+  document.body.removeChild(
+    link
+  );
+
+
+  URL.revokeObjectURL(
+    url
+  );
+
+
+  setStatus(
+
+    "✓ " +
+    songs[currentSong].filename +
+    " berhasil dibuat."
+
+  );
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+
+function setStatus(message) {
+
+  statusBox.textContent =
+    message;
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+
+selectSong(1);
+
+
+</script>
+
+
+</body>
+
+</html>

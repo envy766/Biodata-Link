@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -30,7 +32,7 @@ body {
 
   width: 100%;
 
-  height: 100%;
+  min-height: 100%;
 
 }
 
@@ -63,7 +65,15 @@ body {
 
   text-align: center;
 
-  overflow: hidden;
+  /*
+   * PENTING:
+   * sebelumnya overflow:hidden membuat
+   * halaman tidak bisa melakukan scroll.
+   */
+
+  overflow-x: hidden;
+
+  overflow-y: auto;
 
   position: relative;
 
@@ -360,6 +370,13 @@ body::before {
 
   min-height: 100vh;
 
+  /*
+   * Memberi ruang bawah supaya footer
+   * tidak terpotong.
+   */
+
+  padding-bottom: 35px;
+
 }
 
 
@@ -369,14 +386,9 @@ body::before {
 
 .top-section {
 
-  position: absolute;
+  position: relative;
 
-  top: 30px;
-
-  left: 50%;
-
-  transform:
-    translateX(-50%);
+  padding-top: 30px;
 
   width: 100%;
 
@@ -411,6 +423,29 @@ body::before {
 
   animation:
     welcomeIn 1.8s ease forwards;
+
+}
+
+
+@keyframes welcomeIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(-15px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
 
 }
 
@@ -491,33 +526,6 @@ body::before {
 
 
 /* =========================================
-   WELCOME ANIMATION
-========================================= */
-
-@keyframes welcomeIn {
-
-  from {
-
-    opacity: 0;
-
-    transform:
-      translateY(-15px);
-
-  }
-
-  to {
-
-    opacity: 1;
-
-    transform:
-      translateY(0);
-
-  }
-
-}
-
-
-/* =========================================
    NAME
 ========================================= */
 
@@ -556,10 +564,6 @@ body::before {
 }
 
 
-/* =========================================
-   NAME ANIMATION
-========================================= */
-
 @keyframes nameIn {
 
   from {
@@ -589,14 +593,10 @@ body::before {
 
 .photo-frame {
 
-  position: absolute;
+  position: relative;
 
-  top: 145px;
-
-  left: 50%;
-
-  transform:
-    translateX(-50%);
+  margin:
+    28px auto 0;
 
   width: 210px;
 
@@ -609,6 +609,27 @@ body::before {
   justify-content: center;
 
   z-index: 6;
+
+  animation:
+    frameFloat 5s ease-in-out infinite;
+
+}
+
+
+@keyframes frameFloat {
+
+  0%,
+  100% {
+
+    margin-top: 28px;
+
+  }
+
+  50% {
+
+    margin-top: 24px;
+
+  }
 
 }
 
@@ -866,63 +887,150 @@ body::before {
 
 
 /* =========================================
-   FRAME FLOAT
-========================================= */
-
-.photo-frame {
-
-  animation:
-    frameFloat 5s ease-in-out infinite;
-
-}
-
-
-@keyframes frameFloat {
-
-  0%,
-  100% {
-
-    margin-top: 0;
-
-  }
-
-  50% {
-
-    margin-top: -4px;
-
-  }
-
-}
-
-
-/* =========================================
    MENU SECTION
 ========================================= */
 
 .menu-section {
 
-  position: absolute;
-
-  left: 50%;
-
-  transform:
-    translateX(-50%);
+  position: relative;
 
   width: 100%;
 
-  top: 55%;
+  margin-top: 28px;
 
 }
 
 
 /* =========================================
-   CHOOSE YOUR ROOM
+   LYRICS DISPLAY
+   FIXED HEIGHT
+========================================= */
+
+.lyrics-display {
+
+  width: 92%;
+
+  height: 78px;
+
+  min-height: 78px;
+
+  max-height: 78px;
+
+  margin:
+    0 auto 18px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  text-align: center;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+
+}
+
+
+/* =========================================
+   LYRICS LINE
+========================================= */
+
+.lyrics-line {
+
+  width: 100%;
+
+  padding: 3px 8px;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  letter-spacing: 0.5px;
+
+  transition:
+
+    opacity 0.45s ease,
+
+    transform 0.45s ease,
+
+    filter 0.45s ease;
+
+}
+
+
+/* =========================================
+   ACTIVE LYRICS
+========================================= */
+
+.lyrics-line.active {
+
+  color: #f7df8b;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  text-shadow:
+
+    0 0 5px #d7c890,
+
+    0 0 12px rgba(215,200,144,0.8),
+
+    0 0 25px rgba(215,200,144,0.45);
+
+  opacity: 1;
+
+  transform:
+    scale(1.03);
+
+}
+
+
+/* =========================================
+   PREVIOUS LYRICS
+========================================= */
+
+.lyrics-line.past {
+
+  color: #a5966b;
+
+  opacity: 0.35;
+
+  transform:
+    scale(0.94);
+
+}
+
+
+/* =========================================
+   NEXT LYRICS
+========================================= */
+
+.lyrics-line.next {
+
+  color: #c9bb8a;
+
+  opacity: 0.55;
+
+  transform:
+    scale(0.96);
+
+}
+
+
+/* =========================================
+   SUBTITLE
 ========================================= */
 
 .subtitle {
 
   margin:
-    0 0 30px;
+    0 0 16px;
 
   font-size: 7px;
 
@@ -940,10 +1048,6 @@ body::before {
 
 }
 
-
-/* =========================================
-   FADE IN
-========================================= */
 
 @keyframes fadeIn {
 
@@ -974,7 +1078,8 @@ body::before {
 
   padding: 11px;
 
-  margin: 11px auto;
+  margin:
+    11px auto;
 
   border-radius: 11px;
 
@@ -1004,10 +1109,6 @@ body::before {
 
 }
 
-
-/* =========================================
-   BUTTON ANIMATION
-========================================= */
 
 @keyframes buttonIn {
 
@@ -1121,12 +1222,131 @@ body::before {
 
 
 /* =========================================
+   MUSIC PLAYER
+========================================= */
+
+.music-player {
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  margin:
+    12px 0 18px;
+
+}
+
+
+/* =========================================
+   MUSIC PLAY / PAUSE BUTTON
+========================================= */
+
+.music-toggle {
+
+  display: block;
+
+  width: 50%;
+
+  padding: 10px;
+
+  margin:
+    12px auto;
+
+  border-radius: 11px;
+
+  border:
+    2px solid #00f7ff;
+
+  background:
+    rgba(0,247,255,0.025);
+
+  color: #00f7ff;
+
+  box-shadow:
+
+    0 0 8px rgba(0,247,255,0.45);
+
+  cursor: pointer;
+
+  font-family:
+    'Segoe UI',
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  line-height: normal;
+
+  opacity: 0;
+
+  transform:
+    translateY(20px);
+
+  animation:
+    buttonIn 1s ease forwards;
+
+  animation-delay:
+    3.2s;
+
+  transition:
+
+    transform 0.35s ease,
+
+    box-shadow 0.35s ease,
+
+    background 0.35s ease;
+
+}}
+
+.music-toggle:hover {
+
+  transform:
+    translateY(-3px)
+    scale(1.04);
+
+  background:
+    rgba(0,247,255,0.1);
+
+  box-shadow:
+
+    0 0 15px #00f7ff,
+
+    0 0 30px #00f7ff,
+
+    0 0 55px rgba(0,247,255,0.5);
+
+}
+
+}
+
+.music-toggle:active {
+
+  transform:
+    scale(0.94);
+
+}
+
+
+/* =========================================
    FOOTER
 ========================================= */
 
 footer {
 
-  margin-top: 30px;
+  margin:
+    25px 0 0;
+
+  padding-bottom: 25px;
 
   font-size: 10px;
 
@@ -1138,7 +1358,7 @@ footer {
     footerIn 1.5s ease forwards;
 
   animation-delay:
-    3s;
+    3.6s;
 
 }
 
@@ -1160,11 +1380,15 @@ footer {
 }
 
 
+/* =========================================
+   MOBILE HEIGHT
+========================================= */
+
 @media (max-height: 650px) {
 
   .top-section {
 
-    top: 20px;
+    padding-top: 20px;
 
   }
 
@@ -1184,11 +1408,11 @@ footer {
 
   .photo-frame {
 
-    top: 112px;
-
     width: 145px;
 
     height: 145px;
+
+    margin-top: 22px;
 
   }
 
@@ -1224,40 +1448,56 @@ footer {
 
   .menu-section {
 
-    top: 52%;
+    margin-top: 14px;
+
+  }
+
+  .lyrics-display {
+
+    height: 72px;
+
+    min-height: 72px;
+
+    max-height: 72px;
 
   }
 
   .theme-btn {
 
-    padding: 14px;
+    padding: 10px;
 
-    margin: 12px 0;
+    margin: 9px auto;
 
   }
 
 }
 
+
+/* =========================================
+   VERY SHORT SCREEN
+========================================= */
 
 @media (max-height: 560px) {
 
   .photo-frame {
 
-    top: 100px;
-
     transform:
-      translateX(-50%)
       scale(0.82);
+
+    margin-top: 18px;
+
+    margin-bottom: -20px;
 
   }
 
   .menu-section {
 
-    top: 54%;
+    margin-top: 8px;
 
   }
 
 }
+
 
 </style>
 
@@ -1444,12 +1684,30 @@ footer {
   <div class="menu-section">
 
 
+    <!-- =====================================
+         LYRICS DISPLAY
+    ====================================== -->
+
+    <div
+      id="lyricsDisplay"
+      class="lyrics-display"
+    ></div>
+
+
+    <!-- =====================================
+         SUBTITLE
+    ====================================== -->
+
     <div class="subtitle">
 
       __ SEMOGA DI SUATU HARI NANTI __
 
     </div>
 
+
+    <!-- =====================================
+         THEME BUTTONS
+    ====================================== -->
 
     <a
       href="Themes/lightneon.html"
@@ -1469,6 +1727,28 @@ footer {
     </a>
 
 
+    <!-- =====================================
+         MUSIC PLAYER
+    ====================================== -->
+
+    <div class="music-player">
+
+      <button
+        id="musicToggle"
+        class="music-toggle"
+        type="button"
+        aria-label="Play music"
+      >
+       PLAY
+      </button>
+
+    </div>
+
+
+    <!-- =====================================
+         FOOTER
+    ====================================== -->
+
     <footer>
 
       Copyright © August 2026
@@ -1483,7 +1763,6 @@ footer {
 
 
 </div>
-
 
 <!-- =========================================================
      NATURAL METEOR SYSTEM
@@ -2414,5 +2693,13 @@ animateGoldDust();
 </script>
 
 
+<!-- =========================================
+     LYRICS PLAYER ENGINE
+========================================= -->
+
+<script src="lyrics-player.js"></script>
+
+
 </body>
 </html>
+
