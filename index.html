@@ -1223,14 +1223,19 @@ body::before {
 
 }
 
-
 /* =========================================
-   MUSIC PLAYER
+   MUSIC PLAYER CONTAINER
+   ONE BOX — PREV / PLAY / NEXT
 ========================================= */
 
 .music-player {
 
-  width: 100%;
+  width: 50%;
+
+  height: 36px;
+
+  margin:
+    12px auto 18px;
 
   display: flex;
 
@@ -1238,40 +1243,134 @@ body::before {
 
   align-items: center;
 
-  margin:
-    12px 0 18px;
+  border:
+    2px solid #00f7ff;
+
+  border-radius: 11px;
+
+  background:
+    rgba(0,247,255,0.025);
+
+  box-shadow:
+
+    0 0 8px rgba(0,247,255,0.45);
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  transform:
+    translateY(20px);
+
+  animation:
+    buttonIn 1s ease forwards;
+
+  animation-delay:
+    3.2s;
+
+  transition:
+
+    box-shadow 0.35s ease,
+
+    background 0.35s ease;
 
 }
 
 
 /* =========================================
-   MUSIC PLAY / PAUSE BUTTON
+   PREVIOUS / NEXT ARROW
+========================================= */
+
+.music-nav {
+
+  width: 31px;
+
+  height: 100%;
+
+  padding: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #00f7ff;
+
+  font-size: 21px;
+
+  font-weight: 300;
+
+  line-height: 1;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  transition:
+
+    color 0.25s ease,
+
+    text-shadow 0.25s ease,
+
+    transform 0.25s ease;
+
+}
+
+
+.music-nav:hover {
+
+  color: #ffffff;
+
+  text-shadow:
+
+    0 0 5px #00f7ff,
+
+    0 0 12px #00f7ff,
+
+    0 0 25px #00f7ff;
+
+  transform:
+    scale(1.15);
+
+}
+
+
+.music-nav:active {
+
+  transform:
+    scale(0.88);
+
+}
+
+
+/* =========================================
+   PLAY / PAUSE
 ========================================= */
 
 .music-toggle {
 
-  display: block;
+  flex: 0 0 85px;
 
-  width: 50%;
+  height: 100%;
 
-  padding: 10px;
+  padding: 0;
 
-  margin:
-    12px auto;
+  margin: 0;
 
-  border-radius: 11px;
+  border: none;
 
-  border:
-    2px solid #00f7ff;
+  outline: none;
 
-  background:
-    rgba(0,247,255,0.025);
+  background: transparent;
 
   color: #00f7ff;
-
-  box-shadow:
-
-    0 0 8px rgba(0,247,255,0.45);
 
   cursor: pointer;
 
@@ -1288,57 +1387,63 @@ body::before {
 
   letter-spacing: 2px;
 
-  line-height: normal;
-
-  opacity: 0;
-
-  transform:
-    translateY(20px);
-
-  animation:
-    buttonIn 1s ease forwards;
-
-  animation-delay:
-    3.2s;
+  line-height: 1;
 
   transition:
 
-    transform 0.35s ease,
+    color 0.25s ease,
 
-    box-shadow 0.35s ease,
+    text-shadow 0.25s ease,
 
-    background 0.35s ease;
+    background 0.25s ease;
 
-}}
+}
+
 
 .music-toggle:hover {
 
-  transform:
-    translateY(-3px)
-    scale(1.04);
+  color: #ffffff;
 
   background:
-    rgba(0,247,255,0.1);
+    rgba(0,247,255,0.06);
 
-  box-shadow:
+  text-shadow:
 
-    0 0 15px #00f7ff,
+    0 0 5px #00f7ff,
 
-    0 0 30px #00f7ff,
+    0 0 12px #00f7ff,
 
-    0 0 55px rgba(0,247,255,0.5);
-
-}
+    0 0 25px #00f7ff;
 
 }
+
 
 .music-toggle:active {
 
   transform:
-    scale(0.94);
+    scale(0.96);
 
 }
 
+
+/* =========================================
+   PLAYER HOVER GLOW
+========================================= */
+
+.music-player:hover {
+
+  background:
+    rgba(0,247,255,0.04);
+
+  box-shadow:
+
+    0 0 12px #00f7ff,
+
+    0 0 25px rgba(0,247,255,0.55),
+
+    0 0 40px rgba(0,247,255,0.25);
+
+}
 
 /* =========================================
    FOOTER
@@ -1738,24 +1843,42 @@ footer {
       ✦ NIGHT ✦
     </a>
 
+<!-- =========================================
+     MUSIC CONTROLS
+========================================= -->
 
-    <!-- =====================================
-         MUSIC PLAYER
-    ====================================== -->
+<div class="music-player">
 
-    <div class="music-player">
+  <button
+    id="previousSong"
+    class="music-nav"
+    type="button"
+    aria-label="Previous song"
+  >
+    ‹
+  </button>
 
-      <button
-        id="musicToggle"
-        class="music-toggle"
-        type="button"
-        aria-label="Play music"
-      >
-       PLAY
-      </button>
 
-    </div>
+  <button
+    id="musicToggle"
+    class="music-toggle"
+    type="button"
+    aria-label="Play music"
+  >
+    PLAY
+  </button>
 
+
+  <button
+    id="nextSong"
+    class="music-nav"
+    type="button"
+    aria-label="Next song"
+  >
+    ›
+  </button>
+
+</div>
 
     <!-- =====================================
          FOOTER

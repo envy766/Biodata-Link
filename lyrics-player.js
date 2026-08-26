@@ -77,7 +77,16 @@ class LyricsPlayer {
       document.getElementById(
         "musicToggle"
       );
+ this.previousButton =
+  document.getElementById(
+    "previousSong"
+  );
 
+
+ this.nextButton =
+  document.getElementById(
+    "nextSong"
+  );
 
     this.lyricsContainer =
       document.getElementById(
@@ -118,6 +127,35 @@ class LyricsPlayer {
       }
     );
 
+/* PREVIOUS */
+
+if (this.previousButton) {
+
+  this.previousButton.addEventListener(
+    "click",
+    () => {
+
+      this.previousSong();
+
+    }
+  );
+
+}
+
+/* NEXT */
+
+if (this.nextButton) {
+
+  this.nextButton.addEventListener(
+    "click",
+    () => {
+
+      this.nextSong();
+
+    }
+  );
+
+}
 
     /* UPDATE LIRIK */
 
@@ -129,7 +167,6 @@ class LyricsPlayer {
 
       }
     );
-
 
     /* LAGU SELESAI */
 
@@ -145,7 +182,6 @@ class LyricsPlayer {
 
       }
     );
-
 
     /* LOAD LAGU PERTAMA */
 
@@ -499,6 +535,42 @@ class LyricsPlayer {
 
   }
 
+/* =======================================================
+     PREVIOUS SONG
+  ======================================================= */
+
+  previousSong() {
+
+    let previousIndex =
+      this.currentIndex - 1;
+
+
+    if (
+      previousIndex < 0
+    ) {
+
+      if (
+        this.config.loopPlaylist
+      ) {
+
+        previousIndex =
+          this.config.songs.length - 1;
+
+      } else {
+
+        previousIndex = 0;
+
+      }
+
+    }
+
+
+    this.loadSong(
+      previousIndex,
+      true
+    );
+
+  }
 
   /* =======================================================
      UPDATE BUTTON
