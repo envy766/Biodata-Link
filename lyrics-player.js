@@ -12,7 +12,7 @@ const LYRICS_PLAYER_CONFIG = {
 
   songs: [
 
-    {
+{
       audio: "lyricstime/song1.mp3",
       lyricsFile: "lyricstime/song1.lrc"
     },
@@ -25,6 +25,21 @@ const LYRICS_PLAYER_CONFIG = {
     {
       audio: "lyricstime/song3.mp3",
       lyricsFile: "lyricstime/song3.lrc"
+    },
+
+    {
+      audio: "lyricstime/song4.mp3",
+      lyricsFile: "lyricstime/song4.lrc"
+    },
+
+    {
+      audio: "lyricstime/song5.mp3",
+      lyricsFile: "lyricstime/song5.lrc"
+    },
+
+    {
+      audio: "lyricstime/song6.mp3",
+      lyricsFile: "lyricstime/song6.lrc"
     }
 
   ],
