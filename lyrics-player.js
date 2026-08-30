@@ -40,6 +40,11 @@ const LYRICS_PLAYER_CONFIG = {
     {
       audio: "lyricstime/song6.mp3",
       lyricsFile: "lyricstime/song6.lrc"
+    },
+
+    {
+      audio: "lyricstime/song7.mp3",
+      lyricsFile: "lyricstime/song7.lrc"
     }
 
   ],
