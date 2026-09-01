@@ -1,0 +1,916 @@
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+
+/* =========================================
+   BODY / NIGHT SKY
+========================================= */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:
+    radial-gradient(
+      circle at 50% 35%,
+      #19150b 0%,
+      #090805 45%,
+      #000000 100%
+    );
+  color: #d7c890;
+  min-height: 100vh;
+  text-align: center;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+
+/* =========================================
+   GOLDEN ATMOSPHERE
+========================================= */
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 650px;
+  height: 650px;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  background:
+    radial-gradient(
+      circle,
+      rgba(215, 200, 144, 0.08),
+      transparent 68%
+    );
+  animation: roomGlow 8s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes roomGlow {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.45;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   NORMAL STARS
+========================================= */
+
+.star {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #d7c890,
+    0 0 18px rgba(215, 200, 144, 0.7);
+  pointer-events: none;
+  z-index: 1;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+
+/* =========================================
+   BIG STARS
+========================================= */
+
+.star.big {
+  width: 4px;
+  height: 4px;
+  box-shadow:
+    0 0 5px #ffffff,
+    0 0 12px #ffffff,
+    0 0 25px #d7c890,
+    0 0 40px rgba(215, 200, 144, 0.8);
+}
+
+
+/* =========================================
+   STAR TWINKLE
+========================================= */
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.65);
+  }
+
+  50% {
+    opacity: 0.65;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.55);
+  }
+}
+
+
+/* =========================================
+   SPARKLE STAR
+========================================= */
+
+.star.sparkle {
+  width: 3px;
+  height: 3px;
+  box-shadow:
+    0 0 6px #ffffff,
+    0 0 15px #ffffff,
+    0 0 30px #d7c890;
+}
+
+.star.sparkle::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  left: -13px;
+  top: 1px;
+  background:
+    linear-gradient(
+      to right,
+      transparent,
+      #ffffff,
+      transparent
+    );
+}
+
+.star.sparkle::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 30px;
+  left: 1px;
+  top: -13px;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      #ffffff,
+      transparent
+    );
+}
+
+
+/* =========================================
+   METEOR CANVAS
+========================================= */
+
+#meteorCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+
+/* =========================================
+   GOLDEN DUST CANVAS
+========================================= */
+
+#goldDustCanvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.container {
+  position: relative;
+  z-index: 5;
+  width: 90%;
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-bottom: 35px;
+}
+
+
+/* =========================================
+   TOP SECTION
+========================================= */
+
+.top-section {
+  position: relative;
+  padding-top: 30px;
+  width: 100%;
+}
+
+
+/* =========================================
+   WELCOME TEXT
+========================================= */
+
+.welcome {
+  margin: 0;
+  color: #e7d99e;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-shadow:
+    0 0 5px #d7c890,
+    0 0 12px rgba(215,200,144,0.8),
+    0 0 25px rgba(215,200,144,0.45);
+  opacity: 0;
+  animation: welcomeIn 1.8s ease forwards;
+}
+
+@keyframes welcomeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   WELCOME CURVE
+========================================= */
+
+.welcome span {
+  display: inline-block;
+}
+
+.welcome span:nth-child(1),
+.welcome span:nth-child(2) {
+  transform: translateY(0);
+}
+
+.welcome span:nth-child(3),
+.welcome span:nth-child(4) {
+  transform: translateY(4px);
+}
+
+.welcome span:nth-child(5),
+.welcome span:nth-child(6),
+.welcome span:nth-child(7) {
+  transform: translateY(8px);
+}
+
+.welcome span:nth-child(8),
+.welcome span:nth-child(9) {
+  transform: translateY(10px);
+}
+
+.welcome span:nth-child(10),
+.welcome span:nth-child(11) {
+  transform: translateY(8px);
+}
+
+.welcome span:nth-child(12),
+.welcome span:nth-child(13) {
+  transform: translateY(5px);
+}
+
+.welcome span:nth-child(14),
+.welcome span:nth-child(15) {
+  transform: translateY(2px);
+}
+
+
+/* =========================================
+   NAME
+========================================= */
+
+.name {
+  margin: 25px 0 0;
+  font-size: 32px;
+  letter-spacing: 5px;
+  color: #f2d879;
+  opacity: 0;
+  transform: scale(0.9);
+  text-shadow:
+    0 0 5px #d7c890,
+    0 0 12px #d7c890,
+    0 0 25px rgba(215,200,144,0.8),
+    0 0 45px rgba(215,200,144,0.35);
+  animation: nameIn 1.5s ease forwards;
+  animation-delay: 1s;
+}
+
+@keyframes nameIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* =========================================
+   PHOTO FRAME
+========================================= */
+
+.photo-frame {
+  position: relative;
+  margin: 28px auto 0;
+  width: 210px;
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  animation: frameFloat 5s ease-in-out infinite;
+}
+
+@keyframes frameFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+
+/* =========================================
+   OUTER ORNAMENT RING
+========================================= */
+
+.frame-outer {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  border: 2px solid #b99545;
+  box-shadow:
+    0 0 0 2px #4f3917,
+    0 0 0 4px #d7b75b,
+    0 0 0 6px #5c421a,
+    0 0 12px rgba(215,183,91,0.35);
+}
+
+
+/* =========================================
+   INNER ORNAMENT RING
+========================================= */
+
+.frame-inner {
+  position: absolute;
+  width: 192px;
+  height: 192px;
+  border-radius: 50%;
+  border: 2px solid #d9bd70;
+  box-shadow:
+    inset 0 0 0 2px #654919,
+    inset 0 0 12px rgba(215,183,91,0.3);
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo-area {
+  position: relative;
+  width: 174px;
+  height: 174px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #080706;
+  border: 2px solid #8e6a29;
+  box-shadow:
+    0 0 0 2px #30220e,
+    0 0 12px rgba(215,183,91,0.3);
+  z-index: 3;
+}
+
+.photo-area img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+
+/* =========================================
+   FRAME DECORATION
+========================================= */
+
+.frame-decoration {
+  position: absolute;
+  z-index: 8;
+  color: #e4c56f;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  line-height: 1;
+  text-shadow:
+    0 1px 2px #000,
+    0 0 5px rgba(215,183,91,0.5);
+}
+
+.frame-top {
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.frame-bottom {
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.frame-left {
+  left: -9px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+}
+
+.frame-right {
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+
+/* =========================================
+   FRAME ORNAMENT DOTS
+========================================= */
+
+.frame-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #d9b85e;
+  box-shadow: 0 0 4px rgba(215,183,91,0.65);
+  z-index: 9;
+}
+
+.dot-1 {
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dot-2 {
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.dot-3 {
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dot-4 {
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+/* =========================================
+   MENU SECTION
+========================================= */
+
+.menu-section {
+  position: relative;
+  width: 100%;
+  margin-top: 38px;
+  transform: none;
+  animation: none;
+}
+
+
+/* =========================================
+   LYRICS DISPLAY
+========================================= */
+
+.lyrics-display {
+  width: 92%;
+  height: 78px;
+  min-height: 78px;
+  max-height: 78px;
+  margin: 0 auto 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   LYRICS LINE
+========================================= */
+
+.lyrics-line {
+  width: 100%;
+  padding: 3px 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+.lyrics-line.active {
+  color: #f7df8b;
+  font-size: 15px;
+  font-weight: 600;
+  text-shadow:
+    0 0 5px #d7c890,
+    0 0 12px rgba(215,200,144,0.8),
+    0 0 25px rgba(215,200,144,0.45);
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+.lyrics-line.past {
+  color: #a5966b;
+  opacity: 0.35;
+  transform: scale(0.94);
+}
+
+.lyrics-line.next {
+  color: #c9bb8a;
+  opacity: 0.55;
+  transform: scale(0.96);
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.subtitle {
+  margin: 0 0 16px;
+  font-size: 7px;
+  letter-spacing: 3px;
+  color: #c9bb8a;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards;
+  animation-delay: 1.8s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.85;
+  }
+}
+
+
+/* =========================================
+   THEME BUTTON
+========================================= */
+
+.theme-btn {
+  display: block;
+  width: 90%;
+  padding: 11px;
+  margin: 11px auto;
+  border-radius: 11px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: buttonIn 1s ease forwards;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+@keyframes buttonIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================
+   LIGHT NEON BUTTON
+========================================= */
+
+.light-btn {
+  color: #00f7ff;
+  border: 2px solid #00f7ff;
+  background: rgba(0,247,255,0.025);
+  box-shadow: 0 0 8px rgba(0,247,255,0.45);
+  animation-delay: 2.3s;
+}
+
+.light-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  background: rgba(0,247,255,0.1);
+  box-shadow:
+    0 0 15px #00f7ff,
+    0 0 30px #00f7ff,
+    0 0 55px rgba(0,247,255,0.5);
+}
+
+
+/* =========================================
+   NIGHT GOLD BUTTON
+========================================= */
+
+.gold-btn {
+  color: #f0d878;
+  border: 2px solid #d7c890;
+  background: rgba(215,200,144,0.025);
+  box-shadow: 0 0 8px rgba(215,200,144,0.45);
+  animation-delay: 2.6s;
+}
+
+.gold-btn:hover {
+  transform: translateY(-3px) scale(1.04);
+  background: rgba(215,200,144,0.1);
+  box-shadow:
+    0 0 15px #d7c890,
+    0 0 30px #d7c890,
+    0 0 55px rgba(215,200,144,0.5);
+}
+
+
+/* =========================================
+   MUSIC PLAYER CONTAINER
+========================================= */
+
+.music-player {
+  width: 50%;
+  height: 36px;
+  margin: 12px auto 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #00f7ff;
+  border-radius: 11px;
+  background: rgba(0,247,255,0.025);
+  box-shadow: 0 0 8px rgba(0,247,255,0.45);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: buttonIn 1s ease forwards;
+  animation-delay: 3.5s;
+  transition:
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+
+/* =========================================
+   PREVIOUS / NEXT
+========================================= */
+
+.music-nav {
+  width: 31px;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #00f7ff;
+  font-size: 21px;
+  font-weight: 300;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.music-nav:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 5px #00f7ff,
+    0 0 12px #00f7ff,
+    0 0 25px #00f7ff;
+  transform: scale(1.15);
+}
+
+.music-nav:active {
+  transform: scale(0.88);
+}
+
+
+/* =========================================
+   PLAY / PAUSE
+========================================= */
+
+.music-toggle {
+  flex: 0 0 85px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #00f7ff;
+  cursor: pointer;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1;
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.music-toggle:hover {
+  color: #ffffff;
+  background: rgba(0,247,255,0.06);
+  text-shadow:
+    0 0 5px #00f7ff,
+    0 0 12px #00f7ff,
+    0 0 25px #00f7ff;
+}
+
+.music-toggle:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================
+   PLAYER HOVER GLOW
+========================================= */
+
+.music-player:hover {
+  background: rgba(0,247,255,0.04);
+  box-shadow:
+    0 0 12px #00f7ff,
+    0 0 25px rgba(0,247,255,0.55),
+    0 0 40px rgba(0,247,255,0.25);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 12px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  color: #d7c890;
+  opacity: 0;
+  animation: footerIn 1.5s ease forwards;
+  animation-delay: 3.9s;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes footerIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.45;
+  }
+}
+
+
+/* =========================================
+   MOBILE HEIGHT
+========================================= */
+
+@media (max-height: 650px) {
+
+  .top-section {
+    padding-top: 20px;
+  }
+
+  .welcome {
+    font-size: 18px;
+  }
+
+  .name {
+    font-size: 28px;
+    margin-top: 18px;
+  }
+
+  .photo-frame {
+    width: 145px;
+    height: 145px;
+    margin-top: 22px;
+  }
+
+  .frame-outer {
+    width: 145px;
+    height: 145px;
+  }
+
+  .frame-inner {
+    width: 131px;
+    height: 131px;
+  }
+
+  .photo-area {
+    width: 115px;
+    height: 115px;
+  }
+
+  .frame-decoration {
+    font-size: 20px;
+  }
+
+  .menu-section {
+    margin-top: 14px;
+  }
+
+  .lyrics-display {
+    height: 72px;
+    min-height: 72px;
+    max-height: 72px;
+  }
+
+  .theme-btn {
+    padding: 10px;
+    margin: 9px auto;
+  }
+
+}
+
+
+/* =========================================
+   VERY SHORT SCREEN
+========================================= */
+
+@media (max-height: 560px) {
+
+  .photo-frame {
+    transform: scale(0.82);
+    margin-top: 18px;
+    margin-bottom: -20px;
+  }
+
+  .menu-section {
+    margin-top: 8px;
+  }
+
+}
