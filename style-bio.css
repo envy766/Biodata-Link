@@ -239,7 +239,7 @@ body::before {
   color: #e7d99e;
   font-size: 21px;
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   text-shadow:
     0 0 5px #d7c890,
     0 0 12px rgba(215,200,144,0.8),
@@ -269,40 +269,103 @@ body::before {
   display: inline-block;
 }
 
-.welcome span:nth-child(1),
-.welcome span:nth-child(2) {
+.welcome span:not(:nth-child(8)):not(:nth-child(11)):not(:nth-child(14)) {
+  margin-right: 1.5px;
+}
+
+/* RAPATKAN C - O */
+.welcome span:nth-child(5) {
+  margin-left: -7px;
+}
+
+/* W */
+.welcome span:nth-child(1) {
   transform: translateY(0);
 }
 
-.welcome span:nth-child(3),
-.welcome span:nth-child(4) {
+/* e */
+.welcome span:nth-child(2) {
+  transform: translateY(2px);
+}
+
+/* l */
+.welcome span:nth-child(3) {
   transform: translateY(4px);
 }
 
-.welcome span:nth-child(5),
-.welcome span:nth-child(6),
-.welcome span:nth-child(7) {
+/* c */
+.welcome span:nth-child(4) {
+  transform: translateY(6px);
+}
+
+/* o */
+.welcome span:nth-child(5) {
   transform: translateY(8px);
 }
 
-.welcome span:nth-child(8),
-.welcome span:nth-child(9) {
+/* m */
+.welcome span:nth-child(6) {
   transform: translateY(10px);
 }
 
-.welcome span:nth-child(10),
+/* e */
+.welcome span:nth-child(7) {
+  transform: translateY(12px);
+}
+
+/* space */
+.welcome span:nth-child(8) {
+  transform: translateY(12px);
+}
+
+/* t */
+.welcome span:nth-child(9) {
+  transform: translateY(13px);
+}
+
+/* o */
+.welcome span:nth-child(10) {
+  transform: translateY(13px);
+}
+
+/* space */
 .welcome span:nth-child(11) {
+  transform: translateY(11px);
+}
+
+/* m */
+.welcome span:nth-child(12) {
+  transform: translateY(10px);
+}
+
+/* y */
+.welcome span:nth-child(13) {
+  transform: translateY(9px);
+}
+
+/* space */
+.welcome span:nth-child(14) {
   transform: translateY(8px);
 }
 
-.welcome span:nth-child(12),
-.welcome span:nth-child(13) {
-  transform: translateY(5px);
+/* r */
+.welcome span:nth-child(15) {
+  transform: translateY(6px);
 }
 
-.welcome span:nth-child(14),
-.welcome span:nth-child(15) {
+/* o */
+.welcome span:nth-child(16) {
+  transform: translateY(4px);
+}
+
+/* o */
+.welcome span:nth-child(17) {
   transform: translateY(2px);
+}
+
+/* m */
+.welcome span:nth-child(18) {
+  transform: translateY(0);
 }
 
 
@@ -362,7 +425,7 @@ body::before {
   }
 
   50% {
-    transform: translateY(-4px);
+    transform: translateY(-9px);
   }
 }
 
