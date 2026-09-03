@@ -1,3 +1,5 @@
+
+
 /* =========================================================
    BIODATA-LINK
    LYRICS PLAYER ENGINE — LRC VERSION
@@ -11,8 +13,6 @@
 const LYRICS_PLAYER_CONFIG = {
 
   songs: [
-
-{
 
     {
       audio: "lyricstime/song4.mp3",
