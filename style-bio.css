@@ -643,6 +643,21 @@ body::before {
   transform: scale(0.96);
 }
 
+/* =========================================
+   LYRICS MAIN / SUB
+========================================= */
+
+.lyrics-main,
+.lyrics-sub {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.lyrics-sub {
+  font-size: 12px;
+  line-height: 1.25;
+}
 
 /* =========================================
    SUBTITLE

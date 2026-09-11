@@ -704,6 +704,35 @@ if (this.nextButton) {
 
   }
 
+/* =======================================================
+   FORMAT LYRICS TEXT
+======================================================= */
+
+formatLyricText(text) {
+
+  const match =
+    text.match(
+      /^(.*?)\s*(\(.*\))$/
+    );
+
+  if (!match) {
+    return `
+      <span class="lyrics-main">
+        ${text}
+      </span>
+    `;
+  }
+
+  return `
+    <span class="lyrics-main">
+      ${match[1].trim()}
+    </span>
+    <span class="lyrics-sub">
+      ${match[2].trim()}
+    </span>
+  `;
+
+}
 
   /* =======================================================
      RENDER LYRICS
@@ -753,10 +782,10 @@ if (this.nextButton) {
       line.className =
         "lyrics-line";
 
-
-      line.textContent =
-        this.currentLyrics[i].text;
-
+line.innerHTML =
+  this.formatLyricText(
+    this.currentLyrics[i].text
+  );
 
       if (
         i === activeIndex
